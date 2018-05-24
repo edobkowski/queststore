@@ -3,26 +3,34 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.Role;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class RoleRepository implements Repository<Role> {
+public class RoleRepository extends AbstractRepository<Role> {
+    private static final String ADD_QUERY = "INSERT INTO artifacts(name) VALUES(?)";
+    private static final String EDIT_QUERY = "INSERT INTO artifacts(name) VALUES(?) WHERE id=?";
+    private static final String DELETE_QUERY = "DELETE * FROM artifacts WHERE id=?";
+
+    public RoleRepository() throws PersistenceLayerException {
+    }
+
     @Override
-    public void add(Role entity) {
+    void addEntity(Role entity) throws SQLException {
 
     }
 
     @Override
-    public void update(Role entity) {
+    void updateEntity(Role entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(Role entity) {
+    void deleteEntity(Role entity) throws SQLException {
 
     }
 
     @Override
-    public List<Role> query(SqlSpecification sqlSpecification) {
+    List<Role> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }
