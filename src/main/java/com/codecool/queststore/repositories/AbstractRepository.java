@@ -10,17 +10,20 @@ import java.sql.DriverManager;
 import java.util.List;
 
 public abstract class AbstractRepository<E> implements Repository<E> {
+    protected final RepositoryPool REPOSITORY_POOL;
+
     protected final Connection dbConnection;
     protected PreparedStatement preparedStatement;
     protected ResultSet resultSet;
 
     public AbstractRepository() throws PersistenceLayerException {
+        this.REPOSITORY_POOL = new RepositoryPool();
         try {
             this.dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore",
                     "postgres",
                     "postgres");
         } catch (SQLException e) {
-            throw new PersistenceLayerException("Can't get connection to database");
+            throw new PersistenceLayerException("Can't get connection to the database");
         }
     }
 
@@ -68,5 +71,5 @@ public abstract class AbstractRepository<E> implements Repository<E> {
         }
     }
 
-    abstract List<E> deserializeEntities() throws SQLException;
+    abstract List<E> deserializeEntities() throws PersistenceLayerException;
 }
