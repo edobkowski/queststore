@@ -1,9 +1,9 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.model.entities.Artifact;
-import com.codecool.queststore.specifications.SqlSpecification;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArtifactRepository extends AbstractRepository<Artifact> {
@@ -40,7 +40,17 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
     }
 
     @Override
-    List<Artifact> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
-        return null;
+    List<Artifact> deserializeEntity() throws SQLException {
+        List<Artifact> artifacts = new ArrayList<>();
+
+        while (super.resultSet.next()) {
+            int id = super.resultSet.getInt("id");
+            String name = super.resultSet.getString("name");
+            String description = super.resultSet.getString("description");
+            int price = super.resultSet.getInt("price");
+
+            artifacts.add(new Artifact(id, name, description, price));
+        }
+        return artifacts;
     }
 }
