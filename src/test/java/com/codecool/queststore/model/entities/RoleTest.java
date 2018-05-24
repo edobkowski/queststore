@@ -28,5 +28,4 @@ class RoleTest {
             assertEquals("user", role.getName());
         });
     }
-
 }
