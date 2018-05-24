@@ -1,6 +1,6 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.model.Privilege;
+import com.codecool.queststore.model.entities.Privilege;
 import com.codecool.queststore.specifications.SqlSpecification;
 
 import java.sql.SQLException;

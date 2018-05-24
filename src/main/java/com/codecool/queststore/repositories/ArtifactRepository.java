@@ -1,6 +1,6 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.model.Artifact;
+import com.codecool.queststore.model.entities.Artifact;
 import com.codecool.queststore.specifications.SqlSpecification;
 
 import java.sql.SQLException;

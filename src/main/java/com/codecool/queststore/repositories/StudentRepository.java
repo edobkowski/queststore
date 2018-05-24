@@ -1,6 +1,6 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.model.Student;
+import com.codecool.queststore.model.entities.Student;
 import com.codecool.queststore.specifications.SqlSpecification;
 
 import java.util.List;
