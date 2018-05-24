@@ -6,7 +6,7 @@ public enum Repositories {
     PRIVILEGE(new PrivilegeRepository()),
     MENTOR(new MentorRepository()),
     STUDENT(new StudentRepository()),
-    CLASS(new ClassRepository()),
+    CLASS(new CodecoolClassRepository()),
     QUEST(new QuestRepository()),
     ARTIFACT(new ArtifactRepository()),
     WALLET(new WalletRepository()),
