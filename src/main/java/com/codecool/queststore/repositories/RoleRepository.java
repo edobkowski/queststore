@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class RoleRepository extends AbstractRepository<Role> {
-    private static final String ADD_QUERY = "INSERT INTO artifacts(name) VALUES(?)";
-    private static final String EDIT_QUERY = "INSERT INTO artifacts(name) VALUES(?) WHERE id=?";
-    private static final String DELETE_QUERY = "DELETE * FROM artifacts WHERE id=?";
+    private static final String ADD_QUERY = "INSERT INTO roles(name) VALUES(?)";
+    private static final String EDIT_QUERY = "INSERT INTO roles(name) VALUES(?) WHERE id=?";
+    private static final String DELETE_QUERY = "DELETE * FROM roles WHERE id=?";
 
     public RoleRepository() throws PersistenceLayerException {
     }
