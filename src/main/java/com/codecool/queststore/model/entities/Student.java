@@ -3,17 +3,17 @@ package com.codecool.queststore.model.entities;
 public class Student {
     private String login;
     private int experience;
-    private int walletId;
-    private int classId;
+    private Wallet wallet;
+    private CodecoolClass codecoolClass;
 
-    public Student(String login, int walletId) {
+    public Student(String login, Wallet wallet) {
         this.login = login;
         this.experience = 0;
-        this.walletId = walletId;
+        this.wallet = wallet;
     }
-    public Student(String login, int walletId, int classId) {
-        this(login, walletId);
-        this.classId = classId;
+    public Student(String login, Wallet wallet, CodecoolClass codecoolClass) {
+        this(login, wallet);
+        this.codecoolClass = codecoolClass;
     }
 
     public String getLogin() {
@@ -36,19 +36,19 @@ public class Student {
         this.experience += experienceToAdd;
     }
 
-    public int getWalletId() {
-        return this.walletId;
+    public Wallet getWallet() {
+        return this.wallet;
     }
 
-    public void setWalletId(int walletId) {
-        this.walletId = walletId;
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
-    public int getClassId() {
-        return this.classId;
+    public CodecoolClass getCodecoolClass() {
+        return this.codecoolClass;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setCodecoolClass(CodecoolClass codecoolClass) {
+        this.codecoolClass = codecoolClass;
     }
 }
