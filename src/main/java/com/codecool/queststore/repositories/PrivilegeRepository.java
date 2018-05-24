@@ -3,26 +3,29 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.Privilege;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class PrivilegeRepository implements Repository<Privilege> {
+public class PrivilegeRepository extends AbstractRepository<Privilege> {
+    public PrivilegeRepository() throws PersistenceLayerException {}
+
     @Override
-    public void add(Privilege entity) {
+    void addEntity(Privilege entity) throws SQLException {
 
     }
 
     @Override
-    public void update(Privilege entity) {
+    void updateEntity(Privilege entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(Privilege entity) {
+    void deleteEntity(Privilege entity) throws SQLException {
 
     }
 
     @Override
-    public List<Privilege> query(SqlSpecification sqlSpecification) {
+    List<Privilege> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }

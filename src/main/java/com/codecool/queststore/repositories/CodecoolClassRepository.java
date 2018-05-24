@@ -3,26 +3,29 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.CodecoolClass;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class CodecoolClassRepository implements Repository<CodecoolClass> {
+public class CodecoolClassRepository extends AbstractRepository<CodecoolClass> {
+    public CodecoolClassRepository() throws PersistenceLayerException {}
+
     @Override
-    public void add(CodecoolClass entity) {
+    void addEntity(CodecoolClass entity) throws SQLException {
 
     }
 
     @Override
-    public void update(CodecoolClass entity) {
+    void updateEntity(CodecoolClass entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(CodecoolClass entity) {
+    void deleteEntity(CodecoolClass entity) throws SQLException {
 
     }
 
     @Override
-    public List<CodecoolClass> query(SqlSpecification sqlSpecification) {
+    List<CodecoolClass> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }

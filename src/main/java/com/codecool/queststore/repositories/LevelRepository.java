@@ -3,26 +3,29 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.Level;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class LevelRepository implements Repository<Level> {
+public class LevelRepository extends AbstractRepository<Level> {
+    public LevelRepository() throws PersistenceLayerException {}
+
     @Override
-    public void add(Level entity) {
+    void addEntity(Level entity) throws SQLException {
 
     }
 
     @Override
-    public void update(Level entity) {
+    void updateEntity(Level entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(Level entity) {
+    void deleteEntity(Level entity) throws SQLException {
 
     }
 
     @Override
-    public List<Level> query(SqlSpecification sqlSpecification) {
+    List<Level> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }
