@@ -15,27 +15,27 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
 
     @Override
     void addEntity(Artifact entity) throws SQLException {
+        super.preparedStatement = super.dbConnection.prepareStatement(ADD_QUERY);
         super.preparedStatement.setString(1, entity.getName());
         super.preparedStatement.setString(2, entity.getDescription());
         super.preparedStatement.setInt(3, entity.getPrice());
-        super.preparedStatement = super.dbConnection.prepareStatement(ADD_QUERY);
         super.preparedStatement.executeUpdate();
     }
 
     @Override
     void updateEntity(Artifact entity) throws SQLException {
+        super.preparedStatement = super.dbConnection.prepareStatement(EDIT_QUERY);
         super.preparedStatement.setString(1, entity.getName());
         super.preparedStatement.setString(2, entity.getDescription());
         super.preparedStatement.setInt(3, entity.getPrice());
         super.preparedStatement.setInt(4, entity.getId());
-        super.preparedStatement = super.dbConnection.prepareStatement(EDIT_QUERY);
         super.preparedStatement.executeUpdate();
     }
 
     @Override
     void deleteEntity(Artifact entity) throws SQLException {
-        super.preparedStatement.setInt(1, entity.getId());
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
+        super.preparedStatement.setInt(1, entity.getId());
         super.preparedStatement.executeUpdate();
     }
 
