@@ -27,14 +27,14 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
         super.preparedStatement.setString(1, entity.getName());
         super.preparedStatement.setString(2, entity.getDescription());
         super.preparedStatement.setInt(3, entity.getPrice());
-        super.preparedStatement.setInt(4, entity.getId);
+        super.preparedStatement.setInt(4, entity.getId());
         super.preparedStatement = super.dbConnection.prepareStatement(EDIT_QUERY);
         super.preparedStatement.executeUpdate();
     }
 
     @Override
     void deleteEntity(Artifact entity) throws SQLException {
-        super.preparedStatement.setId(1, entity.getId());
+        super.preparedStatement.setInt(1, entity.getId());
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
         super.preparedStatement.executeUpdate();
     }
