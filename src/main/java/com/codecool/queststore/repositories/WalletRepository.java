@@ -3,26 +3,29 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.Wallet;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class WalletRepository implements Repository<Wallet> {
+public class WalletRepository extends AbstractRepository<Wallet> {
+    public WalletRepository() throws PersistenceLayerException {}
+
     @Override
-    public void add(Wallet entity) {
+    void addEntity(Wallet entity) throws SQLException {
 
     }
 
     @Override
-    public void update(Wallet entity) {
+    void updateEntity(Wallet entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(Wallet entity) {
+    void deleteEntity(Wallet entity) throws SQLException {
 
     }
 
     @Override
-    public List<Wallet> query(SqlSpecification sqlSpecification) {
+    List<Wallet> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }

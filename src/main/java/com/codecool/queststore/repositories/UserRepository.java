@@ -3,26 +3,29 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.User;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class UserRepository implements Repository<User> {
+public class UserRepository extends AbstractRepository<User> {
+    public UserRepository() throws PersistenceLayerException {}
+
     @Override
-    public void add(User entity) {
+    void addEntity(User entity) throws SQLException {
 
     }
 
     @Override
-    public void update(User entity) {
+    void updateEntity(User entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(User entity) {
+    void deleteEntity(User entity) throws SQLException {
 
     }
 
     @Override
-    public List<User> query(SqlSpecification sqlSpecification) {
+    List<User> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }
