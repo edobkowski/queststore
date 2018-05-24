@@ -25,7 +25,7 @@ public class WalletRepository extends AbstractRepository<Wallet> {
     }
 
     @Override
-    List<Wallet> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<Wallet> deserializeEntities() throws SQLException {
         return null;
     }
 }

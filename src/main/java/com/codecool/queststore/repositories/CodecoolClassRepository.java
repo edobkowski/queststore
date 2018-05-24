@@ -25,7 +25,7 @@ public class CodecoolClassRepository extends AbstractRepository<CodecoolClass> {
     }
 
     @Override
-    List<CodecoolClass> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<CodecoolClass> deserializeEntities() throws SQLException {
         return null;
     }
 }

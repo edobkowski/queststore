@@ -25,7 +25,7 @@ public class LevelRepository extends AbstractRepository<Level> {
     }
 
     @Override
-    List<Level> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<Level> deserializeEntities() throws SQLException {
         return null;
     }
 }
