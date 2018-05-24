@@ -25,7 +25,7 @@ public class QuestRepository extends AbstractRepository<Quest> {
     }
 
     @Override
-    List<Quest> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<Quest> deserializeEntities() throws SQLException {
         return null;
     }
 }

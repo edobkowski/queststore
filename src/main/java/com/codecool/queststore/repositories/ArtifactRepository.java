@@ -40,7 +40,7 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
     }
 
     @Override
-    List<Artifact> deserializeEntity() throws SQLException {
+    List<Artifact> deserializeEntities() throws SQLException {
         List<Artifact> artifacts = new ArrayList<>();
 
         while (super.resultSet.next()) {

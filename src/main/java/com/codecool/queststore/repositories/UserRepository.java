@@ -25,7 +25,7 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     @Override
-    List<User> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<User> deserializeEntities() throws SQLException {
         return null;
     }
 }
