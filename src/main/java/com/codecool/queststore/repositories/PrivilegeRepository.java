@@ -25,7 +25,7 @@ public class PrivilegeRepository extends AbstractRepository<Privilege> {
     }
 
     @Override
-    List<Privilege> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<Privilege> deserializeEntities() throws SQLException {
         return null;
     }
 }

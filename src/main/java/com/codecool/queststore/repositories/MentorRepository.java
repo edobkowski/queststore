@@ -25,7 +25,7 @@ public class MentorRepository extends AbstractRepository<Mentor> {
     }
 
     @Override
-    List<Mentor> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<Mentor> deserializeEntities() throws SQLException {
         return null;
     }
 }

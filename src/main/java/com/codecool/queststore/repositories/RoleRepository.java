@@ -30,7 +30,7 @@ public class RoleRepository extends AbstractRepository<Role> {
     }
 
     @Override
-    List<Role> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
+    List<Role> deserializeEntities() throws SQLException {
         return null;
     }
 }
