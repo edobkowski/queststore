@@ -58,14 +58,16 @@ public abstract class AbstractRepository<E> implements Repository<E> {
 
     }
 
-    abstract List<E> queryEntities(SqlSpecification sqlSpecification) throws SQLException;
 
     @Override
     public List<E> query(SqlSpecification sqlSpecification) throws PersistenceLayerException {
         try {
-            return queryEntities(sqlSpecification);
+            this.resultSet = sqlSpecification.toQuery().executeQuery();
+            return this.deserializeEntity();
         } catch (SQLException e) {
             throw new PersistenceLayerException("Cannot perform this action");
         }
     }
+
+    abstract List<E> deserializeEntity() throws SQLException;
 }
