@@ -3,26 +3,29 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.Mentor;
 import com.codecool.queststore.specifications.SqlSpecification;
 
+import java.sql.SQLException;
 import java.util.List;
 
-public class MentorRepository implements Repository<Mentor> {
+public class MentorRepository extends AbstractRepository<Mentor> {
+    public MentorRepository() throws PersistenceLayerException {}
+
     @Override
-    public void add(Mentor entity) {
+    void addEntity(Mentor entity) throws SQLException {
 
     }
 
     @Override
-    public void update(Mentor entity) {
+    void updateEntity(Mentor entity) throws SQLException {
 
     }
 
     @Override
-    public void delete(Mentor entity) {
+    void deleteEntity(Mentor entity) throws SQLException {
 
     }
 
     @Override
-    public List<Mentor> query(SqlSpecification sqlSpecification) {
+    List<Mentor> queryEntities(SqlSpecification sqlSpecification) throws SQLException {
         return null;
     }
 }
