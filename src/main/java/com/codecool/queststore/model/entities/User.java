@@ -5,16 +5,25 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private int roleId;
+    private Role role;
     private int hashedPassword;
 
-    public User(String login, String firstName, String lastName, String email, int roleId, String password) {
+    public User(String login, String firstName, String lastName, String email, Role role, String password) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.roleId = roleId;
+        this.role = role;
         this.hashedPassword = password.hashCode();
+    }
+
+    public User(String login, String firstName, String lastName, String email, Role role, int hashedPassword) {
+        this.login = login;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+        this.hashedPassword = hashedPassword;
     }
 
     public String getLogin() {
@@ -49,12 +58,12 @@ public class User {
         this.email = email;
     }
 
-    public int getRoleId() {
-        return this.roleId;
+    public Role getRole() {
+        return this.role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public int getPassword() {
