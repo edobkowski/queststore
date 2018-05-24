@@ -40,17 +40,21 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
     }
 
     @Override
-    List<Artifact> deserializeEntities() throws SQLException {
+    List<Artifact> deserializeEntities() throws PersistenceLayerException {
         List<Artifact> artifacts = new ArrayList<>();
 
-        while (super.resultSet.next()) {
-            int id = super.resultSet.getInt("id");
-            String name = super.resultSet.getString("name");
-            String description = super.resultSet.getString("description");
-            int price = super.resultSet.getInt("price");
+        try {
+            while (super.resultSet.next()) {
+                int id = super.resultSet.getInt("id");
+                String name = super.resultSet.getString("name");
+                String description = super.resultSet.getString("description");
+                int price = super.resultSet.getInt("price");
 
-            artifacts.add(new Artifact(id, name, description, price));
+                artifacts.add(new Artifact(id, name, description, price));
+            }
+            return artifacts;
+        } catch (SQLException e) {
+            throw new PersistenceLayerException("Can't get Artifact from the database");
         }
-        return artifacts;
     }
 }
