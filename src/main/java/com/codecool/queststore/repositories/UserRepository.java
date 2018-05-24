@@ -46,7 +46,7 @@ public class UserRepository extends AbstractRepository<User> {
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
         super.preparedStatement.setString(1, entity.getLogin());
         super.preparedStatement.executeUpdate();
-    } te
+    }
 
     @Override
     List<User> deserializeEntities() throws PersistenceLayerException {
