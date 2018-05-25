@@ -1,5 +1,6 @@
 package com.codecool.queststore.repositories;
 
+import com.codecool.queststore.model.entities.Role;
 import com.codecool.queststore.model.entities.User;
 import com.codecool.queststore.specifications.RoleById;
 import com.codecool.queststore.specifications.SqlSpecification;
@@ -59,9 +60,9 @@ public class UserRepository extends AbstractRepository<User> {
                 String lastName = super.resultSet.getString("last_name");
                 String email = super.resultSet.getString("email");
 
-                Repository roleRepository = this.REPOSITORY_POOL.getRepository(Repositories.ROLE);
+                Repository<Role> roleRepository = this.REPOSITORY_POOL.getRepository(Repositories.ROLE);
                 SqlSpecification getRoleById = new RoleById(super.resultSet.getInt("role_id"));
-                Role role = roleRepository.query(getRoleById);
+                Role role = roleRepository.query(getRoleById).get(0);
 
                 String hashedPassword = super.resultSet.getString("password");
 

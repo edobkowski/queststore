@@ -1,7 +1,11 @@
 package com.codecool.queststore.repositories;
 
+import com.codecool.queststore.model.entities.CodecoolClass;
 import com.codecool.queststore.model.entities.Student;
+import com.codecool.queststore.model.entities.Wallet;
+import com.codecool.queststore.specifications.CodecoolClassById;
 import com.codecool.queststore.specifications.SqlSpecification;
+import com.codecool.queststore.specifications.WalletById;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,15 +55,16 @@ public class StudentRepository extends AbstractRepository<Student> {
                 String login = super.resultSet.getString("login");
                 int experience = super.resultSet.getInt("exp");
 
-                Repository walletRepository = this.REPOSITORY_POOL.getRepository(Repositories.WALLET);
+                Repository<Wallet> walletRepository = this.REPOSITORY_POOL.getRepository(Repositories.WALLET);
                 SqlSpecification getWalletById = new WalletById(super.resultSet.getInt("wallet_id"));
-                Wallet wallet = walletRepository.query(getWalletById);
+                Wallet wallet = walletRepository.query(getWalletById).get(0);
 
-                Repository codecoolClassRepository = this.REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
+                Repository<CodecoolClass> codecoolClassRepository;
+                codecoolClassRepository = this.REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
                 SqlSpecification getCodecoolClassById = new CodecoolClassById(super.resultSet.getInt("class_id"));
-                CodecoolClass codecoolClass = codecoolClassRepository.query(getCodecoolClassById);
+                CodecoolClass codecoolClass = codecoolClassRepository.query(getCodecoolClassById).get(0);
 
-                students.add(new Student(login, experience, Wallet, CodecoolClass));
+                students.add(new Student(login, experience, wallet, codecoolClass));
             }
             return students;
         } catch (SQLException e) {
