@@ -11,8 +11,19 @@ public class Student {
         this.experience = 0;
         this.wallet = wallet;
     }
+
+    public Student(String login, int experience, Wallet wallet) {
+       this(login, wallet);
+       this.experience = experience;
+    }
+
     public Student(String login, Wallet wallet, CodecoolClass codecoolClass) {
         this(login, wallet);
+        this.codecoolClass = codecoolClass;
+    }
+
+    public Student(String login, int experience, Wallet wallet, CodecoolClass codecoolClass) {
+        this(login, experience, wallet);
         this.codecoolClass = codecoolClass;
     }
 
