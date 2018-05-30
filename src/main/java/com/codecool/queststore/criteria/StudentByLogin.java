@@ -1,11 +1,11 @@
-package com.codecool.queststore.specifications;
+package com.codecool.queststore.criteria;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class StudentByLogin implements SqlSpecification {
+public class StudentByLogin implements SqlCriteria {
     private static final String QUERY = "SELECT * FROM students WHERE login=?";
 
     private final Connection connection;
@@ -26,7 +26,7 @@ public class StudentByLogin implements SqlSpecification {
         this.statement.setString(1, this.login);
     }
     @Override
-    public PreparedStatement toQuery() {
+    public PreparedStatement toPreparedStatement() {
         return this.statement;
     }
 }

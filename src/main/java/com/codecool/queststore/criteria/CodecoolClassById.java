@@ -1,19 +1,19 @@
-package com.codecool.queststore.specifications;
+package com.codecool.queststore.criteria;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class WalletById implements SqlSpecification {
-    private static final String QUERY = "SELECT * FROM wallets WHERE id=?";
+public class CodecoolClassById implements SqlCriteria {
+    private static final String QUERY = "SELECT * FROM classes WHERE id=?";
 
     private final Connection connection;
     private PreparedStatement statement;
 
     private final int id;
 
-    public WalletById(int id) throws SQLException {
+    public CodecoolClassById(int id) throws SQLException {
         this.id = id;
         this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore",
                 "postgres",
@@ -26,7 +26,7 @@ public class WalletById implements SqlSpecification {
         this.statement.setInt(1, this.id);
     }
     @Override
-    public PreparedStatement toQuery() {
+    public PreparedStatement toPreparedStatement() {
         return this.statement;
     }
 }
