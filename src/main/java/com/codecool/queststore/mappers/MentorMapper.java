@@ -20,7 +20,7 @@ public class MentorMapper implements Mapper {
         String login = resultSet.getString("login");
 
         Repository<CodecoolClass> classRepository = REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
-        SqlCriteria getClassesByMentor = new CodecoolClassByMentor(login);
+        SqlCriteria getClassesByMentor = new CodecoolClassByMentorLogin(login);
         List<CodecoolClass> classes = classRepository.query(getClassesByMentor);
 
         return new Mentor(login, classes);
