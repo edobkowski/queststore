@@ -1,23 +1,27 @@
 package com.codecool.queststore.mappers;
 
-import com.codecool.queststore.model.entities.Student;
-import com.codecool.queststore.model.entities.CodecoolClass;
-import com.codecool.queststore.model.entities.Wallet;
-import com.codecool.queststore.criteria.SqlCriteria;
-import com.codecool.queststore.criteria.WalletById;
 import com.codecool.queststore.repositories.Repository;
 import com.codecool.queststore.repositories.Repositories;
 import com.codecool.queststore.repositories.RepositoryPool;
+
+import com.codecool.queststore.model.entities.Student;
+import com.codecool.queststore.model.entities.CodecoolClass;
+import com.codecool.queststore.model.entities.Wallet;
+
+import com.codecool.queststore.criteria.SqlCriteria;
+import com.codecool.queststore.criteria.WalletById;
+import com.codecool.queststore.criteria.CodecoolClassById;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentMapper implements Mapper {
+    private static final RepositoryPool REPOSITORY_POOL = RepositoryPool.getInstance();
+
     @Override
     public Student map(ResultSet resultSet) throws SQLException {
         String login = resultSet.getString("login");
         int experience = resultSet.getInt("exp");
-
 
         Repository<Wallet> walletRepository = REPOSITORY_POOL.getRepository(Repositories.WALLET);
         SqlCriteria getWalletById = new WalletById(resultSet.getInt("wallet_id"));
