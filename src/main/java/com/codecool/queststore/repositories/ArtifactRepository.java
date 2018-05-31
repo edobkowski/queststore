@@ -1,11 +1,14 @@
 package com.codecool.queststore.repositories;
 
+import com.codecool.queststore.mappers.ArtifactMapper;
 import com.codecool.queststore.model.entities.Artifact;
 
 import java.sql.SQLException;
 
 public class ArtifactRepository extends AbstractRepository<Artifact> {
-    public ArtifactRepository() throws PersistenceLayerException {}
+    public ArtifactRepository() throws PersistenceLayerException {
+        super.mapper = new ArtifactMapper();
+    }
 
     private static final String ADD_QUERY = "INSERT INTO artifacts(name, description, price) VALUES(?,?,?)";
     private static final String EDIT_QUERY = "INSERT INTO artifacts(name, description, price) VALUES(?,?,?) WHERE id=?";

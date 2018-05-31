@@ -1,6 +1,7 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.model.entities.Role;
+import com.codecool.queststore.mappers.RoleMapper;
 
 import java.sql.SQLException;
 
@@ -10,6 +11,7 @@ public class RoleRepository extends AbstractRepository<Role> {
     private static final String DELETE_QUERY = "DELETE * FROM artifacts WHERE id=?";
 
     public RoleRepository() throws PersistenceLayerException {
+        super.mapper = new RoleMapper();
     }
 
     @Override
