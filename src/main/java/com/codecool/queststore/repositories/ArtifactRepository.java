@@ -6,13 +6,13 @@ import com.codecool.queststore.model.entities.Artifact;
 import java.sql.SQLException;
 
 public class ArtifactRepository extends AbstractRepository<Artifact> {
-    public ArtifactRepository() throws PersistenceLayerException {
-        super.mapper = new ArtifactMapper();
-    }
-
     private static final String ADD_QUERY = "INSERT INTO artifacts(name, description, price) VALUES(?,?,?)";
     private static final String EDIT_QUERY = "INSERT INTO artifacts(name, description, price) VALUES(?,?,?) WHERE id=?";
     private static final String DELETE_QUERY = "DELETE * FROM artifacts WHERE id=?";
+
+    public ArtifactRepository() throws PersistenceLayerException {
+        super.mapper = new ArtifactMapper();
+    }
 
     @Override
     void addEntity(Artifact entity) throws SQLException {

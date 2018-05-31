@@ -1,5 +1,6 @@
 package com.codecool.queststore.repositories;
 
+import com.codecool.queststore.ConnectionProvider;
 import com.codecool.queststore.criteria.SqlCriteria;
 import com.codecool.queststore.mappers.Mapper;
 
@@ -7,9 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.DriverManager;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class AbstractRepository<E> implements Repository<E> {
     protected final Connection dbConnection;
@@ -17,13 +18,7 @@ public abstract class AbstractRepository<E> implements Repository<E> {
     protected Mapper<E> mapper;
 
     public AbstractRepository() throws PersistenceLayerException {
-        try {
-            this.dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore",
-                    "postgres",
-                    "postgres");
-        } catch (SQLException e) {
-            throw new PersistenceLayerException("Can't get connection to database");
-        }
+        this.dbConnection = ConnectionProvider.getConnection();
     }
 
     abstract void addEntity(E entity) throws SQLException;
@@ -57,23 +52,20 @@ public abstract class AbstractRepository<E> implements Repository<E> {
         } catch (SQLException e) {
             throw new PersistenceLayerException("Can't remove object from the database");
         }
-
     }
 
     @Override
     public List<E> query(SqlCriteria sqlCriteria) throws PersistenceLayerException {
-        List<E> entities = new ArrayList<E>();
+        List<E> entities = new ArrayList<>();
 
         try {
             ResultSet resultSet = sqlCriteria.toPreparedStatement().executeQuery();
             while (resultSet.next()) {
                 entities.add(mapper.map(resultSet));
             }
-
             return entities;
-
         } catch (SQLException e) {
-            throw new PersistenceLayerException("Cannot perform this action");
+            throw new PersistenceLayerException("Cannot perform this query");
         }
     }
 }
