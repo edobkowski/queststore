@@ -1,23 +1,23 @@
 package com.codecool.queststore;
 
+import com.codecool.queststore.repositories.PersistenceLayerException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class ConnectionProvider {
-    private static Connection instance;
+    private static Connection connection;
 
-    private ConnectionProvider() {}
-
-    public static Connection getInstance() {
-        if (instance == null) {
+    public static Connection getConnection() throws PersistenceLayerException {
+        if (connection == null) {
             try {
-                instance = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore", "postgres", "postgres");
+                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/queststore", "postgres", "postgres");
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new PersistenceLayerException("Can't get connection to the database");
             }
         }
 
-        return instance;
+        return connection;
     }
 }
