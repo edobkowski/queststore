@@ -6,22 +6,24 @@ import com.codecool.queststore.model.entities.Mentor;
 import java.sql.SQLException;
 
 public class MentorRepository extends AbstractRepository<Mentor> {
+    static {
+        ADD_QUERY = "";
+        EDIT_QUERY = "";
+        DELETE_QUERY = "";
+        EDIT_QUERY_KEY_INDEX = 0;
+    }
+
     public MentorRepository() throws PersistenceLayerException {
         super.mapper = new MentorMapper();
     }
 
     @Override
-    void addEntity(Mentor entity) throws SQLException {
+    void fillStatementWithColumnsData(Mentor entity) throws SQLException {
 
     }
 
     @Override
-    void updateEntity(Mentor entity) throws SQLException {
-
-    }
-
-    @Override
-    void deleteEntity(Mentor entity) throws SQLException {
+    void addPrimaryKeyToStatement(int queryKeyIndex, Mentor entity) throws SQLException {
 
     }
 }

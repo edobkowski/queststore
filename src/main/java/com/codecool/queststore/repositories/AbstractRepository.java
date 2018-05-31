@@ -17,38 +17,50 @@ public abstract class AbstractRepository<E> implements Repository<E> {
     protected PreparedStatement preparedStatement;
     protected Mapper<E> mapper;
 
+    protected static String ADD_QUERY;
+    protected static String EDIT_QUERY;
+    protected static String DELETE_QUERY;
+
+    protected static int EDIT_QUERY_KEY_INDEX;
+    private static final int DELETE_QUERY_KEY_INDEX = 1;
+
     public AbstractRepository() throws PersistenceLayerException {
         this.dbConnection = ConnectionProvider.getConnection();
     }
 
-    abstract void addEntity(E entity) throws SQLException;
+    abstract void fillStatementWithColumnsData(E entity) throws SQLException;
+
+    abstract void addPrimaryKeyToStatement(int queryKeyIndex, E entity) throws SQLException;
 
     @Override
     public void add(E entity) throws PersistenceLayerException {
         try {
-            addEntity(entity);
+            this.preparedStatement = this.dbConnection.prepareStatement(ADD_QUERY);
+            this.fillStatementWithColumnsData(entity);
+            this.preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceLayerException("Can't add object to the database");
         }
     }
 
-    abstract void updateEntity(E entity) throws SQLException;
-
     @Override
     public void update(E entity) throws PersistenceLayerException {
         try {
-            updateEntity(entity);
+            this.preparedStatement = this.dbConnection.prepareStatement(EDIT_QUERY);
+            this.fillStatementWithColumnsData(entity);
+            this.addPrimaryKeyToStatement(EDIT_QUERY_KEY_INDEX, entity);
+            this.preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceLayerException("Can't edit object in the database");
         }
     }
 
-    abstract void deleteEntity(E entity) throws SQLException;
-
     @Override
     public void delete(E entity) throws PersistenceLayerException {
         try {
-            deleteEntity(entity);
+            this.preparedStatement = this.dbConnection.prepareStatement(DELETE_QUERY);
+            this.addPrimaryKeyToStatement(DELETE_QUERY_KEY_INDEX, entity);
+            this.preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new PersistenceLayerException("Can't remove object from the database");
         }

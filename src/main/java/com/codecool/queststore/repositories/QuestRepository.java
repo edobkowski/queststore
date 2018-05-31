@@ -6,22 +6,24 @@ import com.codecool.queststore.model.entities.Quest;
 import java.sql.SQLException;
 
 public class QuestRepository extends AbstractRepository<Quest> {
+    static {
+        ADD_QUERY = "";
+        EDIT_QUERY = "";
+        DELETE_QUERY = "";
+        EDIT_QUERY_KEY_INDEX = 0;
+    }
+
     public QuestRepository() throws PersistenceLayerException {
         super.mapper = new QuestMapper();
     }
 
     @Override
-    void addEntity(Quest entity) throws SQLException {
+    void fillStatementWithColumnsData(Quest entity) throws SQLException {
 
     }
 
     @Override
-    void updateEntity(Quest entity) throws SQLException {
-
-    }
-
-    @Override
-    void deleteEntity(Quest entity) throws SQLException {
+    void addPrimaryKeyToStatement(int queryKeyIndex, Quest entity) throws SQLException {
 
     }
 }
