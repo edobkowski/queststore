@@ -17,3 +17,8 @@ hs_err_pid*
 # Maven
 target/
 log/
+
+# VS Code trash
+.classpath
+.project
+.settings/
