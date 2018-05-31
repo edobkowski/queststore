@@ -7,16 +7,17 @@ import com.codecool.queststore.criteria.SqlCriteria;
 import com.codecool.queststore.criteria.CodecoolClassByMentor;
 import com.codecool.queststore.repositories.Repositories;
 import com.codecool.queststore.repositories.RepositoryPool;
+import com.codecool.queststore.repositories.PersistenceLayerException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MentorMapper implements Mapper {
 
-    public static final RepositoryPool REPOSITORY_POOL = new RepositoryPool();
+    private static final RepositoryPool REPOSITORY_POOL = new RepositoryPool();
 
     @Override
-    public Mentor map(ResultSet resultSet) throws SQLException {
+    public Mentor map(ResultSet resultSet) throws SQLException, PersistanceLayerException {
         String login = resultSet.getString("login");
 
         Repository<CodecoolClass> classRepository = REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
