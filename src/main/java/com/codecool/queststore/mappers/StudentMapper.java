@@ -12,6 +12,8 @@ import com.codecool.queststore.criteria.SqlCriteria;
 import com.codecool.queststore.criteria.WalletById;
 import com.codecool.queststore.criteria.CodecoolClassById;
 
+import com.codecool.queststore.repositories.PersistenceLayerException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,7 +21,7 @@ public class StudentMapper implements Mapper {
     private static final RepositoryPool REPOSITORY_POOL = RepositoryPool.getInstance();
 
     @Override
-    public Student map(ResultSet resultSet) throws SQLException {
+    public Student map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         String login = resultSet.getString("login");
         int experience = resultSet.getInt("exp");
 
