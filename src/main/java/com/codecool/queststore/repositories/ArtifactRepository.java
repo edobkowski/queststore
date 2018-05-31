@@ -1,17 +1,18 @@
 package com.codecool.queststore.repositories;
 
+import com.codecool.queststore.mappers.ArtifactMapper;
 import com.codecool.queststore.model.entities.Artifact;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ArtifactRepository extends AbstractRepository<Artifact> {
-    public ArtifactRepository() throws PersistenceLayerException {}
-
     private static final String ADD_QUERY = "INSERT INTO artifacts(name, description, price) VALUES(?,?,?)";
     private static final String EDIT_QUERY = "INSERT INTO artifacts(name, description, price) VALUES(?,?,?) WHERE id=?";
     private static final String DELETE_QUERY = "DELETE * FROM artifacts WHERE id=?";
+
+    public ArtifactRepository() throws PersistenceLayerException {
+        super.mapper = new ArtifactMapper();
+    }
 
     @Override
     void addEntity(Artifact entity) throws SQLException {
@@ -37,24 +38,5 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
         super.preparedStatement.setInt(1, entity.getId());
         super.preparedStatement.executeUpdate();
-    }
-
-    @Override
-    List<Artifact> deserializeEntities() throws PersistenceLayerException {
-        List<Artifact> artifacts = new ArrayList<>();
-
-        try {
-            while (super.resultSet.next()) {
-                int id = super.resultSet.getInt("id");
-                String name = super.resultSet.getString("name");
-                String description = super.resultSet.getString("description");
-                int price = super.resultSet.getInt("price");
-
-                artifacts.add(new Artifact(id, name, description, price));
-            }
-            return artifacts;
-        } catch (SQLException e) {
-            throw new PersistenceLayerException("Can't get Artifact from the database");
-        }
     }
 }

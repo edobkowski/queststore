@@ -4,10 +4,19 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class RepositoryPool {
+    private static RepositoryPool instance;
     private final Map<Repositories, Repository> repositories;
 
-    public RepositoryPool() {
+    private RepositoryPool() {
         this.repositories = new HashMap<>();
+    }
+
+    public static RepositoryPool getInstance() {
+        if (instance == null) {
+            instance = new RepositoryPool();
+        }
+
+        return instance;
     }
 
     public Repository getRepository(Repositories repositoryType) throws PersistenceLayerException {

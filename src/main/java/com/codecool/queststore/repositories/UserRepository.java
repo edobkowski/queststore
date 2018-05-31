@@ -1,21 +1,17 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.model.entities.Role;
 import com.codecool.queststore.model.entities.User;
-import com.codecool.queststore.specifications.RoleById;
-import com.codecool.queststore.specifications.SqlSpecification;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserRepository extends AbstractRepository<User> {
-    public UserRepository() throws PersistenceLayerException {}
-
     private static final String ADD_QUERY = "INSERT INTO users(login, first_name, last_name, email, role_id, password)" +
-                                            " VALUES(?,?,?,?,?,?)";
+            " VALUES(?,?,?,?,?,?)";
     private static final String EDIT_QUERY = ADD_QUERY + " WHERE login=?";
     private static final String DELETE_QUERY = "DELETE * FROM users WHERE login=?";
+
+    public UserRepository() throws PersistenceLayerException {}
+
 
     @Override
     void addEntity(User entity) throws SQLException {
@@ -47,30 +43,5 @@ public class UserRepository extends AbstractRepository<User> {
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
         super.preparedStatement.setString(1, entity.getLogin());
         super.preparedStatement.executeUpdate();
-    }
-
-    @Override
-    List<User> deserializeEntities() throws PersistenceLayerException {
-        List<User> users = new ArrayList<>();
-
-        try {
-            while (super.resultSet.next()) {
-                String login = super.resultSet.getString("login");
-                String firstName = super.resultSet.getString("first_name");
-                String lastName = super.resultSet.getString("last_name");
-                String email = super.resultSet.getString("email");
-
-                Repository<Role> roleRepository = this.REPOSITORY_POOL.getRepository(Repositories.ROLE);
-                SqlSpecification getRoleById = new RoleById(super.resultSet.getInt("role_id"));
-                Role role = roleRepository.query(getRoleById).get(0);
-
-                String hashedPassword = super.resultSet.getString("password");
-
-                users.add(new User(login, firstName, lastName, email, role, hashedPassword));
-            }
-            return users;
-        } catch (SQLException e) {
-            throw new PersistenceLayerException("Can't get User from the database");
-        }
     }
 }

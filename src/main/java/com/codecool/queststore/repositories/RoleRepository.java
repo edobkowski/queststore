@@ -1,11 +1,9 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.model.entities.Role;
-import com.codecool.queststore.specifications.SqlSpecification;
+import com.codecool.queststore.mappers.RoleMapper;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 
 public class RoleRepository extends AbstractRepository<Role> {
     private static final String ADD_QUERY = "INSERT INTO roles(name) VALUES(?)";
@@ -13,6 +11,7 @@ public class RoleRepository extends AbstractRepository<Role> {
     private static final String DELETE_QUERY = "DELETE * FROM roles WHERE id=?";
 
     public RoleRepository() throws PersistenceLayerException {
+        super.mapper = new RoleMapper();
     }
 
     @Override
@@ -35,18 +34,5 @@ public class RoleRepository extends AbstractRepository<Role> {
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
         super.preparedStatement.setInt(1, entity.getId());
         super.preparedStatement.executeUpdate();
-    }
-
-    @Override
-    List<Role> deserializeEntities() throws SQLException {
-        List<Role> roles = new ArrayList<>();
-
-        while (super.resultSet.next()) {
-            int id = super.resultSet.getInt("id");
-            String name = super.resultSet.getString("name");
-
-            roles.add(new Role(id, name));
-        }
-        return roles;
     }
 }
