@@ -3,8 +3,6 @@ package com.codecool.queststore.repositories;
 import com.codecool.queststore.model.entities.Artifact;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ArtifactRepository extends AbstractRepository<Artifact> {
     public ArtifactRepository() throws PersistenceLayerException {}
@@ -37,20 +35,5 @@ public class ArtifactRepository extends AbstractRepository<Artifact> {
         super.preparedStatement = super.dbConnection.prepareStatement(DELETE_QUERY);
         super.preparedStatement.setInt(1, entity.getId());
         super.preparedStatement.executeUpdate();
-    }
-
-    @Override
-    List<Artifact> deserializeEntities() throws SQLException {
-        List<Artifact> artifacts = new ArrayList<>();
-
-        while (super.resultSet.next()) {
-            int id = super.resultSet.getInt("id");
-            String name = super.resultSet.getString("name");
-            String description = super.resultSet.getString("description");
-            int price = super.resultSet.getInt("price");
-
-            artifacts.add(new Artifact(id, name, description, price));
-        }
-        return artifacts;
     }
 }

@@ -1,10 +1,8 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.model.entities.Role;
-import com.codecool.queststore.specifications.SqlSpecification;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class RoleRepository extends AbstractRepository<Role> {
     private static final String ADD_QUERY = "INSERT INTO artifacts(name) VALUES(?)";
@@ -27,10 +25,5 @@ public class RoleRepository extends AbstractRepository<Role> {
     @Override
     void deleteEntity(Role entity) throws SQLException {
 
-    }
-
-    @Override
-    List<Role> deserializeEntities() throws SQLException {
-        return null;
     }
 }
