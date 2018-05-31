@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class WalletMapper implements Mapper {
     @Override
-    public Wallet map(ResultSet resultSet) throws SQLException, PersistanceLayerException {
+    public Wallet map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         int id = resultSet.getInt("id");
         int balance = resultSet.getInt("balance");
 

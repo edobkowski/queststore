@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ArtifactMapper implements Mapper {
     @Override
-    public Artifact map(ResultSet resultSet) throws SQLException, PersistanceLayerException {
+    public Artifact map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
         String description = resultSet.getString("description");

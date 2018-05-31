@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class QuestMapper implements Mapper {
     @Override
-    public Quest map(ResultSet resultSet) throws SQLException, PersistanceLayerException {
+    public Quest map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
         String description = resultSet.getString("description");
