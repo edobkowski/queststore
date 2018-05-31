@@ -6,22 +6,24 @@ import com.codecool.queststore.mappers.LevelMapper;
 import java.sql.SQLException;
 
 public class LevelRepository extends AbstractRepository<Level> {
+    static {
+        ADD_QUERY = "";
+        EDIT_QUERY = "";
+        DELETE_QUERY = "";
+        EDIT_QUERY_KEY_INDEX = 0;
+    }
+
     public LevelRepository() throws PersistenceLayerException {
         super.mapper = new LevelMapper();
     }
 
     @Override
-    void addEntity(Level entity) throws SQLException {
+    void fillStatementWithColumnsData(Level entity) throws SQLException {
 
     }
 
     @Override
-    void updateEntity(Level entity) throws SQLException {
-
-    }
-
-    @Override
-    void deleteEntity(Level entity) throws SQLException {
+    void addPrimaryKeyToStatement(int queryKeyIndex, Level entity) throws SQLException {
 
     }
 }

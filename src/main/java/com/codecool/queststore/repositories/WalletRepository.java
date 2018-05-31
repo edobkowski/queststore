@@ -6,22 +6,24 @@ import com.codecool.queststore.model.entities.Wallet;
 import java.sql.SQLException;
 
 public class WalletRepository extends AbstractRepository<Wallet> {
+    static {
+        ADD_QUERY = "";
+        EDIT_QUERY = "";
+        DELETE_QUERY = "";
+        EDIT_QUERY_KEY_INDEX = 0;
+    }
+
     public WalletRepository() throws PersistenceLayerException {
         super.mapper = new WalletMapper();
     }
 
     @Override
-    void addEntity(Wallet entity) throws SQLException {
+    void fillStatementWithColumnsData(Wallet entity) throws SQLException {
 
     }
 
     @Override
-    void updateEntity(Wallet entity) throws SQLException {
-
-    }
-
-    @Override
-    void deleteEntity(Wallet entity) throws SQLException {
+    void addPrimaryKeyToStatement(int queryKeyIndex, Wallet entity) throws SQLException {
 
     }
 }
