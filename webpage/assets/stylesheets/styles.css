@@ -41,3 +41,7 @@ p + p {
 .fas {
     margin-right: .5rem;
 }
+
+.center-column {
+    text-align: center;
+}
