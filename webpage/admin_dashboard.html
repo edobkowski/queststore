@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <meta charset="UTF-8">
+		<meta charset="UTF-8">
+		<!-- Stylesheets -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 		<link rel="stylesheet" href="assets/stylesheets/styles.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+		<!-- Scripts -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		<script src="assets/scripts/openModals.js"></script>
+		
     <title>Dashboard // QuestStore</title>
 	</head>
 	<body>
+
 		<div class="container-fluid bg-dark sticky-top">
 			<header class="container">
 				<nav class="navbar navbar-expand-lg navbar-dark">
@@ -63,61 +73,11 @@
 
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 						<div class="card-body">
-							<button class="btn btn-dark" type="button" data-toggle="modal" data-target="#add-mentor">
-								<i class="fas fa-plus-circle" onclick="addMentor()"></i> Add mentor
+							<button class="btn btn-dark" type="button" id="open-add-mentor-modal" onclick="openModal(this.id)">
+								<i class="fas fa-plus-circle"></i>Add mentor
 							</button>
 
 							<hr>
-
-
-				<div class="modal" tabindex="-1" role="dialog" id="add-mentor">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title">Create mentor</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-
-										<form>
-												<div class="form-group">
-													<label for="exampleInputEmail1">First name</label>
-													<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter first name">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Last name</label>
-													<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter last name">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Email address</label>
-													<input type="email" class="form-control" id="" placeholder="Enter email">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label>Select classes</label>
-													<select class="form-control form-control-sm">
-															<option>2017.11</option>
-															<option>2018.04</option>
-															<option>2018.05</option>
-													</select>
-
-												</div>
-
-												<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-											</form>
-
-								</div>
-								<div class="modal-footer">
-									<button type="submit" class="btn btn-success">Create mentor</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-								</div>
-							</div>
-						</div>
-					</div>
 
 							<h3>List of mentors</h3>
 							<table class="table">
@@ -129,7 +89,7 @@
 										<th scope="col">Email</th>
 										<th scope="col">Login</th>
 										<th scope="col">Classes</th>
-										<th scope="col">OPTIONS</th>
+										<th scope="col" class="center-column"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -140,25 +100,34 @@
 										<td>marek.grzybek@cc.pl</td>
 										<td>m.grzybek</td>
 										<td>2017.11, 2018.04, 2018.05</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
+										<td class="center-column">
+											<i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>
+											<i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>
+										</td>
 									</tr>
 									<tr>
-										<th scope="row">3</th>
+										<th scope="row">2</th>
 										<td>Mateusz</td>
 										<td>Steliga</td>
 										<td>mateusz.steliga@cc.pl</td>
 										<td>skubi</td>
 										<td></td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
+										<td class="center-column">
+											<i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>
+											<i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>
+										</td>
 									</tr>
 									<tr>
-										<th scope="row">2</th>
+										<th scope="row">3</th>
 										<td>Agnieszka</td>
 										<td>Koszany</td>
 										<td>agnieszka.koszany@cc.pl</td>
 										<td>agi</td>
 										<td>2017.11, 2018.04</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
+										<td class="center-column">
+											<i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>
+											<i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -166,18 +135,44 @@
 					</div>
 				</div>
 
-				<div class="card">
-					<div class="card-header" id="headingTwo">
-						<h5 class="mb-0">
-							<section data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								Manage classes
-							</section>
-						</h5>
-					</div>
-					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						</div>
+
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h5 class="mb-0">
+						<section data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Manage classes
+						</section>
+					</h5>
+				</div>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+					<div class="card-body">
+						<button class="btn btn-dark" id="open-add-class-modal" type="button" role="dialog" onclick="openModal(this.id)">
+							<i class="fas fa-plus-circle"></i>Add class
+						</button>
+
+						<hr>
+
+						<h3>List of classes</h3>
+						<table class="table w-25">
+							<thead class="thead-dark">
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th></th>
+								</tr>
+							</thead>
+							<!-- <tbody>
+								<tr>
+									<td>1</td>
+									<td>2017.11</td>
+									<td class="center-column">
+										<i class="fas fa-pencil-alt" data-toggle="modal" data-target="#edit-class"></i>
+										<i class="fas fa-trash-alt" data-toggle="modal" data-target="#remove-class"></i>
+									</td>
+								</tr>
+							</tbody> -->
+						</table>
+
 					</div>
 				</div>
 
@@ -191,16 +186,48 @@
 					</div>
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 						<div class="card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							Levels
 						</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-			
-		<!-- Scripts -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		<!-- Common modal -->
+		<div class="modal" tabindex="-1" role="dialog" id="common-modal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<!-- Here goes modal-content -->
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery script for opening modals -->
+		<!-- <script>
+			$('#open-add-mentor-modal').on('click', function() {
+				$('.modal-content').load('add_mentor_modal.html', function() {
+					$('#common-modal').modal({show:true});
+				});
+			});
+
+			$('#open-edit-mentor-modal').on('click', function() {
+				$('.modal-content').load('edit_mentor_modal.html', function() {
+					$('#common-modal').modal({show:true});
+				});
+			});
+
+			$('#open-remove-mentor-modal').on('click', function() {
+				$('.modal-content').load('remove_mentor_modal.html', function() {
+					$('#common-modal').modal({show:true});
+				});
+			});
+
+			$('#open-add-class-modal').on('click', function() {
+				$('.modal-content').load('add_class_modal.html', function() {
+					$('#common-modal').modal({show:true});
+				});
+			});
+		</script> -->
 	</body>
 </html>
