@@ -52,6 +52,7 @@
 
 
 			<div id="accordion">
+
 				<div class="card">
 					<div class="card-header" id="headingOne">
 						<h5 class="mb-0">
@@ -63,56 +64,73 @@
 
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 						<div class="card-body">
-              <h1>Coins in Your wallet: 150</h1>
-              <hr>
+							<h3>Wallet balance</h3>
+							<p>You have <strong><i class="fab fa-creative-commons"></i>150</strong> CoolCoins and <strong>8</strong> bought but unused artifacts</p>
+							<hr>
 							<h3>List of unused artifacts</h3>
 							<table class="table">
 								<thead class="thead-dark">
 									<tr>
 										<th scope="col"></th>
 										<th scope="col">Artifact name</th>
+										<th scope="col">Description</th>
 										<th scope="col">Count</th>
-										<th scope="col">OPTIONS</th>
+										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<th scope="row">1</th>
+										<td>Combat training</td>
 										<td>Private mentoring</td>
-										<td>2</td>
-										<td><i class="fas fa-arrow-alt-circle-up"></i></td>
-                                    </tr>
+										<td class="center-column">2</td>
+										<td class="center-column"><i class="fas fa-arrow-alt-circle-up"></i></td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Sanctuary</td>
+										<td>You can spend a day in home office</td>
+										<td class="center-column">1</td>
+										<td class="center-column"><i class="fas fa-arrow-alt-circle-up"></i></td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Time Travel</td>
+										<td>extend SI week assignment deadline by one day</td>
+										<td class="center-column">5</td>
+										<td class="center-column"><i class="fas fa-arrow-alt-circle-up"></i></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
-      </div>
-
-
-      <div id="accordion">
-        <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <section data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              Level
-            </section>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            <h1>Your level: 15</h1>
-            <hr>
-            <div class="d-flex justify-content-between">
-              <p class="experience">Experience: 2000</p>
-              <p class="experience">Next level: 4000</p>
-            </div>
-            <div class="progress">
-              <div class="progress-bar bg-dark" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+		 
+				<div class="card">
+					<div class="card-header" id="headingTwo">
+						<h5 class="mb-0">
+							<section data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+								Level
+							</section>
+						</h5>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						<div class="card-body">
+							<h3>Your level: 5</h3>
+							<p>You can see remaining experience for the next level on the progress bar below.
+							The lower bound of the bar is marked by experience thresold of the previous level</p>
+							<hr>
+							<div class="d-flex justify-content-between">
+								<p class="experience">Your experience: <strong>425</strong></p>
+								<p class="experience">Next level: <strong>500</strong></p>
+							</div>
+							<div class="progress">
+								<div class="progress-bar bg-dark" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 		<!-- Scripts -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
