@@ -2,6 +2,8 @@
 <html lang="en">
 	<head>
     <meta charset="UTF-8">
+		
+		<!-- Stylesheets -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 		<link rel="stylesheet" href="assets/stylesheets/styles.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -72,61 +74,11 @@
 
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 						<div class="card-body">
-							<button class="btn btn-dark" type="button" data-toggle="modal" data-target="#add-codecooler">
+							<button class="btn btn-dark" type="button" id="open-add-codecooler-modal" onclick="openModal(this.id)">
 								<i class="fas fa-plus-circle"></i> Add codecooler
 							</button>
 
 							<hr>
-
-							<div class="modal" tabindex="-1" role="dialog" id="add-codecooler">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-
-										<div class="modal-header">
-											<h5 class="modal-title">Create codecooler</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="exampleInputEmail1">First name</label>
-													<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter first name">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Last name</label>
-													<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter last name">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Email address</label>
-													<input type="email" class="form-control" id="" placeholder="Enter email">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label>Select classes</label>
-													<select multiple class="form-control form-control-sm">
-														<option>2017.11</option>
-														<option>2018.04</option>
-														<option>2018.05</option>
-													</select>
-
-												</div>
-
-												<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-											</form>
-										</div>
-
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-success">Create codecooler</button>
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										</div>
-									</div>
-								</div>
-							</div>
 
 							<h3>List of codecoolers</h3>
 							<table class="table table-striped">
@@ -149,25 +101,7 @@
 										<td>edobkowski@gmail.com</td>
 										<td>edobkowski</td>
 										<td>2017.11</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Marcin</td>
-										<td>Tuleja</td>
-										<td>m.tuleja@gmail.com</td>
-										<td>mtuleja</td>
-										<td>2017.11</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Kuba</td>
-										<td>Setla</td>
-										<td>k.setla@gmail.com</td>
-										<td>ksetla</td>
-										<td>2017.11</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
+										<td><i class="fas fa-pencil-alt" id="open-edit-codecooler-modal" onclick="openModal(this.id)"></i><i class="fas fa-trash-alt" id="open-remove-codecooler-modal" onclick="openModal(this.id)"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -186,58 +120,11 @@
 					
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 						<div class="card-body">
-							<button class="btn btn-dark" type="button" data-toggle="modal" data-target="#add-artifact">
+							<button class="btn btn-dark" type="button" id="open-add-artifact-modal" onclick="openModal(this.id)">
 								<i class="fas fa-plus-circle"></i> Add artifact
 							</button>
 
 							<hr>
-
-							<div class="modal" tabindex="-1" role="dialog" id="add-artifact">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Create artifact</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										
-										<div class="modal-body">
-											<form>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Artifact name</label>
-														<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter artifact name">
-														<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Description</label>
-													<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter description">
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Price</label>
-													<input type="email" class="form-control" id="" placeholder="Enter price">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-
-												<div class="form-group">
-													<label>Set category</label>
-													<select class="form-control form-control-sm">
-														<option>Basic</option>
-														<option>Magic</option>
-													</select>
-												</div>
-
-												<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-											</form>
-										</div>
-										
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-success">Create artifact</button>
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										</div>
-									</div>
-								</div>
-							</div>
 
 							<h3>List of artifacts</h3>
 							<table class="table table-striped">
@@ -258,23 +145,7 @@
 										<td>Private mentoring</td>
 										<td>50</td>
 										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>Sanctuary</td>
-										<td>You can spend a day in home office</td>
-										<td>300</td>
-										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>Time Travel</td>
-										<td>extend SI week assignment deadline by one day</td>
-										<td>500</td>
-										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
+										<td><i class="fas fa-pencil-alt" id="open-edit-artifact-modal" onclick="openModal(this.id)"></i><i class="fas fa-trash-alt" id="open-remove-artifact-modal" onclick="openModal(this.id)"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -292,60 +163,11 @@
 					</div>
 					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 						<div class="card-body">
-							<button class="btn btn-dark" type="button" data-toggle="modal" data-target="#add-quest">
+							<button class="btn btn-dark" type="button" id="open-add-quest-modal" onclick="openModal(this.id)">
 								<i class="fas fa-plus-circle"></i> Add quest
 							</button>
 
 							<hr>
-
-
-							<div class="modal" tabindex="-1" role="dialog" id="add-quest">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Create quest</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-
-											<form>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Quest name</label>
-														<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter quest name">
-														<small id="" class="form-text text-muted">Required field</small>
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Description</label>
-													<input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter description">
-												</div>
-												<div class="form-group">
-													<label for="exampleInputEmail1">Reward</label>
-													<input type="email" class="form-control" id="" placeholder="Enter reward">
-													<small id="" class="form-text text-muted">Required field</small>
-												</div>
-
-												<div class="form-group">
-													<label>Set category</label>
-													<select class="form-control form-control-sm">
-														<option>Basic</option>
-														<option>Extra</option>
-													</select>
-
-												</div>
-
-												<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-											</form>
-
-										</div>
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-success">Create quest</button>
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-										</div>
-									</div>
-								</div>
-							</div>
 
 							<h3>List of quests</h3>
 							<table class="table table-striped">
@@ -366,23 +188,7 @@
 										<td>Finishing a Teamwork week</td>
 										<td>100</td>
 										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>Solving the magic puzzle</td>
-										<td>Finishing an SI assignment</td>
-										<td>100</td>
-										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>Spot trap</td>
-										<td>Spot a major mistake in the assignment</td>
-										<td>50</td>
-										<td>Extra</td>
-										<td><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></td>
+										<td><i class="fas fa-pencil-alt" id="open-edit-quest-modal" onclick="openModal(this.id)"></i><i class="fas fa-trash-alt" id="open-remove-quest-modal" onclick="openModal(this.id)"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -392,5 +198,14 @@
 			</div>
 
 		</div>
+		
+		<!-- Common modal -->
+		<div class="modal" tabindex="-1" role="dialog" id="common-modal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<!-- Here goes modal-content -->
+				</div>
+			</div>
+		</div>		
 	</body>
 </html>
