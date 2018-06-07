@@ -9,11 +9,11 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 		
 		<!-- Scripts -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+		<script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 		
-		<script src="assets/scripts/openModals.js"></script>
+		<script defer src="assets/scripts/openModals.js"></script>
 		
     <title>Dashboard</title>
 	</head>
@@ -81,30 +81,11 @@
 							<hr>
 
 							<h3>List of codecoolers</h3>
-							<table class="table table-striped">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col"></th>
-										<th scope="col">First name</th>
-										<th scope="col">Last name</th>
-										<th scope="col">Email</th>
-										<th scope="col">Login</th>
-										<th scope="col">Class</th>
-										<th scope="col">OPTIONS</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Eryk</td>
-										<td>Dobkowski</td>
-										<td>edobkowski@gmail.com</td>
-										<td>edobkowski</td>
-										<td>2017.11</td>
-										<td><i class="fas fa-pencil-alt" id="open-edit-codecooler-modal" onclick="openModal(this.id)"></i><i class="fas fa-trash-alt" id="open-remove-codecooler-modal" onclick="openModal(this.id)"></i></td>
-									</tr>
-								</tbody>
-							</table>
+							
+							<div id="codecoolers-table">
+								<!--Generated table of students-->
+								<script src="assets/scripts/addCodecoolersTable.js"></script>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -127,28 +108,11 @@
 							<hr>
 
 							<h3>List of artifacts</h3>
-							<table class="table table-striped">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col"></th>
-										<th scope="col">Name</th>
-										<th scope="col">Description</th>
-										<th scope="col">Price</th>
-										<th scope="col">Category</th>
-										<th scope="col">OPTIONS</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Combat training</td>
-										<td>Private mentoring</td>
-										<td>50</td>
-										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt" id="open-edit-artifact-modal" onclick="openModal(this.id)"></i><i class="fas fa-trash-alt" id="open-remove-artifact-modal" onclick="openModal(this.id)"></i></td>
-									</tr>
-								</tbody>
-							</table>
+							
+							<div id="artifacts-table">
+								<!--Generated table of artifacts-->
+								<script src="assets/scripts/addArtifactsTable.js"></script>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -170,28 +134,11 @@
 							<hr>
 
 							<h3>List of quests</h3>
-							<table class="table table-striped">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col"></th>
-										<th scope="col">Name</th>
-										<th scope="col">Description</th>
-										<th scope="col">Reward</th>
-										<th scope="col">Category</th>
-										<th scope="col">OPTIONS</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Exploring a dungeon</td>
-										<td>Finishing a Teamwork week</td>
-										<td>100</td>
-										<td>Basic</td>
-										<td><i class="fas fa-pencil-alt" id="open-edit-quest-modal" onclick="openModal(this.id)"></i><i class="fas fa-trash-alt" id="open-remove-quest-modal" onclick="openModal(this.id)"></i></td>
-									</tr>
-								</tbody>
-							</table>
+							
+							<div id="quests-table">
+								<!--Generated table of quests-->
+								<script src="assets/scripts/addQuestsTable.js"></script>
+							</div>
 						</div>
 					</div>
 				</div>
