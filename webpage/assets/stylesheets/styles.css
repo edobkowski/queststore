@@ -37,3 +37,14 @@ p + p {
 .fas {
     margin-right: .5rem;
 }
+.col-form-label {
+    margin-right: 1rem;
+
+}
+.profile-container {
+    width: 40%;
+    margin-top: 1rem;
+}
+.profile-item {
+    margin: .2rem;
+}
