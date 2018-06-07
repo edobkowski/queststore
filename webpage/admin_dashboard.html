@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<!-- Stylesheets -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 		<link rel="stylesheet" href="assets/stylesheets/styles.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
 		<!-- Scripts -->
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+		<script defer src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 		<script src="assets/scripts/openModals.js"></script>
 		
@@ -45,7 +45,6 @@
 
 						<!-- Login -->
 						<section class="nav-item ml-auto centered-vertically" id="login">
-							<!-- <span id="logged-user">Hello, User</span> -->
 							<button class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i>Sign in</button>
 						</section>
 					</div>
@@ -77,102 +76,34 @@
 								<i class="fas fa-plus-circle"></i>Add mentor
 							</button>
 
-							<hr>
+							<div id="mentors-table">
+								<script src="assets/scripts/addMentorsTable.js"></script>
+							</div>
 
-							<h3>List of mentors</h3>
-							<table class="table">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col"></th>
-										<th scope="col">First name</th>
-										<th scope="col">Last name</th>
-										<th scope="col">Email</th>
-										<th scope="col">Login</th>
-										<th scope="col">Classes</th>
-										<th scope="col" class="center-column"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Marek</td>
-										<td>Grzybek</td>
-										<td>marek.grzybek@cc.pl</td>
-										<td>m.grzybek</td>
-										<td>2017.11, 2018.04, 2018.05</td>
-										<td class="center-column">
-											<i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>
-											<i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Mateusz</td>
-										<td>Steliga</td>
-										<td>mateusz.steliga@cc.pl</td>
-										<td>skubi</td>
-										<td></td>
-										<td class="center-column">
-											<i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>
-											<i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Agnieszka</td>
-										<td>Koszany</td>
-										<td>agnieszka.koszany@cc.pl</td>
-										<td>agi</td>
-										<td>2017.11, 2018.04</td>
-										<td class="center-column">
-											<i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>
-											<i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>
-										</td>
-									</tr>
-								</tbody>
-							</table>
 						</div>
 					</div>
 				</div>
 
 
-			<div class="card">
-				<div class="card-header" id="headingTwo">
-					<h5 class="mb-0">
-						<section data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							Manage classes
-						</section>
-					</h5>
-				</div>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-					<div class="card-body">
-						<button class="btn btn-dark" id="open-add-class-modal" type="button" role="dialog" onclick="openModal(this.id)">
-							<i class="fas fa-plus-circle"></i>Add class
-						</button>
+				<div class="card">
+					<div class="card-header" id="headingTwo">
+						<h5 class="mb-0">
+							<section data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								Manage classes
+							</section>
+						</h5>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						<div class="card-body">
+							<button class="btn btn-dark" id="open-add-class-modal" type="button" role="dialog" onclick="openModal(this.id)">
+								<i class="fas fa-plus-circle"></i>Add class
+							</button>
 
-						<hr>
+							<div id="classes-table">
+								<script src="assets/scripts/addClassesTable.js"></script>
+							</div>
 
-						<h3>List of classes</h3>
-						<table class="table w-25">
-							<thead class="thead-dark">
-								<tr>
-									<th></th>
-									<th>Name</th>
-									<th></th>
-								</tr>
-							</thead>
-							<!-- <tbody>
-								<tr>
-									<td>1</td>
-									<td>2017.11</td>
-									<td class="center-column">
-										<i class="fas fa-pencil-alt" data-toggle="modal" data-target="#edit-class"></i>
-										<i class="fas fa-trash-alt" data-toggle="modal" data-target="#remove-class"></i>
-									</td>
-								</tr>
-							</tbody> -->
-						</table>
-
+						</div>
 					</div>
 				</div>
 
@@ -180,19 +111,25 @@
 					<div class="card-header" id="headingThree">
 						<h5 class="mb-0">
 							<section data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								Manage levels
-							</section>
-						</h5>
-					</div>
-					<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-						<div class="card-body">
-							Levels
+							Manage levels
+						</section>
+					</h5>
+				</div>
+				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+					<div class="card-body">
+						<button class="btn btn-dark" id="open-add-level-modal" type="button" role="dialog" onclick="openModal(this.id)">
+							<i class="fas fa-plus-circle"></i>Add level
+						</button>
+
+						<div id="levels-table">
+							<script src="assets/scripts/addLevelsTable.js"></script>
 						</div>
+
 					</div>
 				</div>
 			</div>
 
-		</div>
+		</div> <!-- End of the main cointainer-->
 
 		<!-- Common modal -->
 		<div class="modal" tabindex="-1" role="dialog" id="common-modal">
@@ -202,32 +139,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- jQuery script for opening modals -->
-		<!-- <script>
-			$('#open-add-mentor-modal').on('click', function() {
-				$('.modal-content').load('add_mentor_modal.html', function() {
-					$('#common-modal').modal({show:true});
-				});
-			});
-
-			$('#open-edit-mentor-modal').on('click', function() {
-				$('.modal-content').load('edit_mentor_modal.html', function() {
-					$('#common-modal').modal({show:true});
-				});
-			});
-
-			$('#open-remove-mentor-modal').on('click', function() {
-				$('.modal-content').load('remove_mentor_modal.html', function() {
-					$('#common-modal').modal({show:true});
-				});
-			});
-
-			$('#open-add-class-modal').on('click', function() {
-				$('.modal-content').load('add_class_modal.html', function() {
-					$('#common-modal').modal({show:true});
-				});
-			});
-		</script> -->
+		
 	</body>
 </html>
