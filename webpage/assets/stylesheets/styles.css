@@ -52,3 +52,7 @@ p + p {
    align-items: center;
    justify-content: center;
 }
+
+p.experience {
+    margin-bottom: 0;
+}
