@@ -7,10 +7,10 @@ import java.sql.SQLException;
 
 public class WalletRepository extends AbstractRepository<Wallet> {
     static {
-        ADD_QUERY = "";
-        EDIT_QUERY = "";
-        DELETE_QUERY = "";
-        EDIT_QUERY_KEY_INDEX = 0;
+        ADD_QUERY = "INSERT INTO wallets(owner_login, balance) VALUES(?,?)";
+        EDIT_QUERY = "UPDATE wallets SET owner_login=?, balance=? WHERE id=?";
+        DELETE_QUERY = "DELETE FROM wallets * WHERE id=?";
+        EDIT_QUERY_KEY_INDEX = 3;
     }
 
     public WalletRepository() throws PersistenceLayerException {
@@ -19,11 +19,12 @@ public class WalletRepository extends AbstractRepository<Wallet> {
 
     @Override
     void fillStatementWithColumnsData(Wallet entity) throws SQLException {
-//        TODO
+        super.preparedStatement.setString(1, entity.getOwnerLogin());
+        super.preparedStatement.setInt(2, entity.getBalance());
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Wallet entity) throws SQLException {
-//        TODO
+        super.preparedStatement.setInt(queryKeyIndex, entity.getId());
     }
 }
