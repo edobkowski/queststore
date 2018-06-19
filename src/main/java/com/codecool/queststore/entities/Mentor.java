@@ -1,27 +1,28 @@
 package com.codecool.queststore.entities;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Mentor {
-    private String login;
+    private UserData userData;
     private List<CodecoolClass> classes;
 
-    public Mentor(String login) {
-        this.login = login;
+    public Mentor(UserData userData) {
+        this.userData = userData;
         this.classes = new ArrayList<>();
     }
-    public Mentor(String login, List<CodecoolClass> classes) {
-        this.login = login;
+
+    public Mentor(UserData userData, List<CodecoolClass> classes) {
+        this.userData = userData;
         this.classes = classes;
     }
 
-    public String getLogin() {
-        return this.login;
+    public UserData getUserData() {
+        return this.userData;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserData(UserData userData) {
+        this.userData = userData;
     }
 
     public List<CodecoolClass> getClasses() {

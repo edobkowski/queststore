@@ -19,7 +19,7 @@ public class StudentRepository extends AbstractRepository<Student> {
 
     @Override
     void fillStatementWithColumnsData(Student entity) throws SQLException {
-        super.preparedStatement.setString(1, entity.getLogin());
+        super.preparedStatement.setString(1, entity.getUserData().getLogin());
         super.preparedStatement.setInt(2, entity.getExperience());
         super.preparedStatement.setInt(3, entity.getWallet().getId());
         super.preparedStatement.setInt(4, entity.getCodecoolClass().getId());
@@ -27,6 +27,6 @@ public class StudentRepository extends AbstractRepository<Student> {
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Student entity) throws SQLException {
-        super.preparedStatement.setString(queryKeyIndex, entity.getLogin());
+        super.preparedStatement.setString(queryKeyIndex, entity.getUserData().getLogin());
     }
 }

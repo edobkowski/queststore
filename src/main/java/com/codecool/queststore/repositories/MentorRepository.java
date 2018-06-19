@@ -19,11 +19,11 @@ public class MentorRepository extends AbstractRepository<Mentor> {
 
     @Override
     void fillStatementWithColumnsData(Mentor entity) throws SQLException {
-        super.preparedStatement.setString(1, entity.getLogin());
+        super.preparedStatement.setString(1, entity.getUserData().getLogin());
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Mentor entity) throws SQLException {
-        super.preparedStatement.setString(queryKeyIndex, entity.getLogin());
+        super.preparedStatement.setString(queryKeyIndex, entity.getUserData().getLogin());
     }
 }
