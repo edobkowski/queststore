@@ -9,7 +9,9 @@ import java.sql.SQLException;
 public class RoleMapper implements Mapper<Role> {
     @Override
     public Role map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
-//        TODO
-        return null;
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+
+        return new Role(id, name);
     }
 }
