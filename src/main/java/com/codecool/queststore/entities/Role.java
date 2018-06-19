@@ -1,4 +1,4 @@
-package com.codecool.queststore.model.entities;
+package com.codecool.queststore.entities;
 
 public class Role {
     private static final int NO_ID = -1;

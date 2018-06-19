@@ -4,9 +4,9 @@ import com.codecool.queststore.repositories.Repository;
 import com.codecool.queststore.repositories.Repositories;
 import com.codecool.queststore.repositories.RepositoryPool;
 
-import com.codecool.queststore.model.entities.Student;
-import com.codecool.queststore.model.entities.CodecoolClass;
-import com.codecool.queststore.model.entities.Wallet;
+import com.codecool.queststore.entities.Student;
+import com.codecool.queststore.entities.CodecoolClass;
+import com.codecool.queststore.entities.Wallet;
 
 import com.codecool.queststore.criteria.SqlCriteria;
 import com.codecool.queststore.criteria.WalletById;

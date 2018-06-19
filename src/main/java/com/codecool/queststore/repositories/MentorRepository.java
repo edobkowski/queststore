@@ -1,7 +1,7 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.mappers.MentorMapper;
-import com.codecool.queststore.model.entities.Mentor;
+import com.codecool.queststore.entities.Mentor;
 
 import java.sql.SQLException;
 
@@ -19,11 +19,11 @@ public class MentorRepository extends AbstractRepository<Mentor> {
 
     @Override
     void fillStatementWithColumnsData(Mentor entity) throws SQLException {
-
+//        TODO
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Mentor entity) throws SQLException {
-
+//        TODO
     }
 }

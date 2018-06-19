@@ -1,6 +1,6 @@
 package com.codecool.queststore.mappers;
 
-import com.codecool.queststore.model.entities.Wallet;
+import com.codecool.queststore.entities.Wallet;
 import com.codecool.queststore.repositories.PersistenceLayerException;
 
 import java.sql.ResultSet;

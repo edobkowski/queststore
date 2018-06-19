@@ -1,7 +1,7 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.mappers.CodecoolClassMapper;
-import com.codecool.queststore.model.entities.CodecoolClass;
+import com.codecool.queststore.entities.CodecoolClass;
 
 import java.sql.SQLException;
 
@@ -19,11 +19,13 @@ public class CodecoolClassRepository extends AbstractRepository<CodecoolClass> {
 
     @Override
     void fillStatementWithColumnsData(CodecoolClass entity) throws SQLException {
+//        TODO
 
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, CodecoolClass entity) throws SQLException {
+//        TODO
 
     }
 }

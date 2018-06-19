@@ -1,7 +1,7 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.mappers.StudentMapper;
-import com.codecool.queststore.model.entities.Student;
+import com.codecool.queststore.entities.Student;
 
 import java.sql.SQLException;
 

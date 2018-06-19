@@ -1,6 +1,6 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.model.entities.User;
+import com.codecool.queststore.entities.User;
 import com.codecool.queststore.mappers.UserMapper;
 
 import java.sql.SQLException;
@@ -24,7 +24,7 @@ public class UserRepository extends AbstractRepository<User> {
         super.preparedStatement.setString(3, entity.getLastName());
         super.preparedStatement.setString(4, entity.getEmail());
         super.preparedStatement.setInt(5, entity.getRole().getId());
-        super.preparedStatement.setInt(6, entity.getHashedPassword());
+        super.preparedStatement.setInt(6, entity.getPassword());
     }
 
     @Override
