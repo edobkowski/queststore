@@ -1,27 +1,41 @@
 package com.codecool.queststore.entities;
 
 public class Level {
-
     private int id;
     private String name;
-    private int treshold;
+    private int threshold;
 
-    Level(int id, String name, int treshold) {
-       this.id = id;
-       this.name = name;
-       this.treshold = treshold;
+    public Level(String name, int threshold) {
+        this.name = name;
+        this.threshold = threshold;
+    }
+
+    public Level(int id, String name, int threshold) {
+        this(name, threshold);
+        this.id = id;
     }
 
     public int getId() {
-        return id;
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public int getTreshold() {
-        return treshold;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public int getThreshold() {
+        return this.threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
+    }
 }
