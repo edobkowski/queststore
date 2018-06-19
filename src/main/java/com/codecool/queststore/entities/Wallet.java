@@ -2,6 +2,7 @@ package com.codecool.queststore.entities;
 
 public class Wallet {
     private int id;
+    private String ownerLogin;
     private int balance;
 
     public Wallet() {
@@ -15,6 +16,10 @@ public class Wallet {
 
     public int getId() {
         return this.id;
+    }
+
+    public String getOwnerLogin() {
+        return this.ownerLogin;
     }
 
     public int getBalance() {
