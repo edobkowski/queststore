@@ -12,6 +12,12 @@ VALUES ('marcintuleja', 'Marcin', 'Tuleja', 'marcintuleja@gmail.com', (SELECT id
        ('agi', 'Agnieszka', 'Koszany', 'aga.koszany@gmail.com', (SELECT id FROM roles WHERE name='mentor'), 'brzozowski'),
        ('admin', 'Admin', 'Adminowski', 'admin@admin.com', (SELECT id FROM roles WHERE name='admin'), 'admin');
 
+INSERT INTO admins
+SELECT login FROM users
+    INNER JOIN roles
+    ON (users.role_id=roles.id)
+    WHERE roles.name='admin';
+
 INSERT INTO mentors
 SELECT login FROM users 
     INNER JOIN roles 

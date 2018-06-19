@@ -1,4 +1,4 @@
-package com.codecool.queststore.model.entities;
+package com.codecool.queststore.entities;
 
 public class CodecoolClass {
     private int id;

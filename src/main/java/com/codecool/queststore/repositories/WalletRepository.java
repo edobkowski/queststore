@@ -1,7 +1,7 @@
 package com.codecool.queststore.repositories;
 
 import com.codecool.queststore.mappers.WalletMapper;
-import com.codecool.queststore.model.entities.Wallet;
+import com.codecool.queststore.entities.Wallet;
 
 import java.sql.SQLException;
 
@@ -19,11 +19,11 @@ public class WalletRepository extends AbstractRepository<Wallet> {
 
     @Override
     void fillStatementWithColumnsData(Wallet entity) throws SQLException {
-
+//        TODO
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Wallet entity) throws SQLException {
-
+//        TODO
     }
 }

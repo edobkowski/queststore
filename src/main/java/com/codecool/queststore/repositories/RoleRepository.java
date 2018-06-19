@@ -1,6 +1,6 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.model.entities.Role;
+import com.codecool.queststore.entities.Role;
 import com.codecool.queststore.mappers.RoleMapper;
 
 import java.sql.SQLException;

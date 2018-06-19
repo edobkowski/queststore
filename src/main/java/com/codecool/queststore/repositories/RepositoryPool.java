@@ -51,7 +51,7 @@ public class RepositoryPool {
                 case CODECOOL_CLASS:
                     return new CodecoolClassRepository();
                 default:
-                    return null;
+                    throw new PersistenceLayerException("There's no such a repository");
             }
         }
     }
