@@ -1,4 +1,4 @@
-#container {
+#content-container {
     padding-top: 2em;
 }
 
@@ -38,7 +38,7 @@ p + p {
     margin-right: 1rem;
 }
 
-.fas {
+.fas, .fab {
     margin-right: .5rem;
 }
 
