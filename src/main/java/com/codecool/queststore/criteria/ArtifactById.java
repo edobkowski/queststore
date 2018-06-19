@@ -1,13 +1,13 @@
 package com.codecool.queststore.criteria;
 
-import java.sql.SQLException;
+import com.codecool.queststore.repositories.PersistenceLayerException;
 
 public class ArtifactById extends GetById {
     static {
         QUERY = "SELECT * FROM artifacts WHERE id=?";
     }
 
-    public ArtifactById(int id) throws SQLException {
+    public ArtifactById(int id) throws PersistenceLayerException {
         super(id);
     }
 }

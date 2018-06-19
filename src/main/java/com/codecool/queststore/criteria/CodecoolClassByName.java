@@ -1,5 +1,7 @@
 package com.codecool.queststore.criteria;
 
+import com.codecool.queststore.repositories.PersistenceLayerException;
+
 import java.sql.SQLException;
 
 public class CodecoolClassByName extends SqlCriteria {
@@ -9,7 +11,7 @@ public class CodecoolClassByName extends SqlCriteria {
         QUERY = "SELECT * FROM classes WHERE name=?";
     }
 
-    public CodecoolClassByName(String name) throws SQLException {
+    public CodecoolClassByName(String name) throws PersistenceLayerException {
         this.name = name;
     }
 
