@@ -1,4 +1,4 @@
-package com.codecool.queststore.model.entities;
+package com.codecool.queststore.entities;
 
 import java.util.ArrayList;
 import java.util.List;

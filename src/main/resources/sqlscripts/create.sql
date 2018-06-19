@@ -42,8 +42,7 @@ CREATE TABLE users (
 
 -- Students
 CREATE TABLE students (
-    login TEXT PRIMARY KEY,
-    -- wallet_id INTEGER NOT NULL,
+    login TEXT PRIMARY KEY REFERENCES users(login),
     exp INTEGER NOT NULL DEFAULT 0,
     class_id INTEGER
 );
@@ -51,7 +50,13 @@ CREATE TABLE students (
 
 -- Mentors
 CREATE TABLE mentors (
-    login TEXT PRIMARY KEY
+    login TEXT PRIMARY KEY REFERENCES users(login)
+);
+
+
+-- Admins
+CREATE TABLE admins (
+    login TEXT PRIMARY KEY REFERENCES users(login)
 );
 
 
