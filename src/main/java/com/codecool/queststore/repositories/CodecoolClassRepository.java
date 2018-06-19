@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class CodecoolClassRepository extends AbstractRepository<CodecoolClass> {
     static {
-        ADD_QUERY = "";
-        EDIT_QUERY = "";
-        DELETE_QUERY = "";
+        ADD_QUERY = "INSERT INTO classes(name) VALUES(?)";
+        EDIT_QUERY = "UPDATE classes SET name=? WHERE id=?";
+        DELETE_QUERY = "DELETE * FROM classes WHERE id=?";
         EDIT_QUERY_KEY_INDEX = 0;
     }
 
@@ -19,13 +19,11 @@ public class CodecoolClassRepository extends AbstractRepository<CodecoolClass> {
 
     @Override
     void fillStatementWithColumnsData(CodecoolClass entity) throws SQLException {
-//        TODO
-
+        super.preparedStatement.setString(1, entity.getName());
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, CodecoolClass entity) throws SQLException {
-//        TODO
-
+        super.preparedStatement.setInt(queryKeyIndex, entity.getId());
     }
 }

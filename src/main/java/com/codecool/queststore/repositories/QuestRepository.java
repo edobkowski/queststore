@@ -7,10 +7,10 @@ import java.sql.SQLException;
 
 public class QuestRepository extends AbstractRepository<Quest> {
     static {
-        ADD_QUERY = "";
-        EDIT_QUERY = "";
-        DELETE_QUERY = "";
-        EDIT_QUERY_KEY_INDEX = 0;
+        ADD_QUERY = "INSERT INTO quests(name, description, reward) VALUES(?,?,?)";
+        EDIT_QUERY = "UPDATE quests SET name=?, description=?, reward=? WHERE id=?";
+        DELETE_QUERY = "DELETE FROM artifacts * WHERE id=?";
+        EDIT_QUERY_KEY_INDEX = 4;
     }
 
     public QuestRepository() throws PersistenceLayerException {
@@ -19,11 +19,13 @@ public class QuestRepository extends AbstractRepository<Quest> {
 
     @Override
     void fillStatementWithColumnsData(Quest entity) throws SQLException {
-//        TODO
+        super.preparedStatement.setString(1, entity.getName());
+        super.preparedStatement.setString(2, entity.getDescription());
+        super.preparedStatement.setInt(3, entity.getReward());
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Quest entity) throws SQLException {
-//        TODO
+        super.preparedStatement.setInt(queryKeyIndex, entity.getId());
     }
 }

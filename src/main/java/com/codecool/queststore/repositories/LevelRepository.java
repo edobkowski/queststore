@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class LevelRepository extends AbstractRepository<Level> {
     static {
-        ADD_QUERY = "";
-        EDIT_QUERY = "";
-        DELETE_QUERY = "";
+        ADD_QUERY = "INSERT INTO levels(name,treshold) VALUES(?,?)";
+        EDIT_QUERY = "UPDATE levels SET name=?, treshold=? WHERE id=?";
+        DELETE_QUERY = "DELETE * FROM levels WHERE id=?";
         EDIT_QUERY_KEY_INDEX = 0;
     }
 
@@ -19,13 +19,12 @@ public class LevelRepository extends AbstractRepository<Level> {
 
     @Override
     void fillStatementWithColumnsData(Level entity) throws SQLException {
-//        TODO
-
+        super.preparedStatement.setString(1, entity.getName());
+        super.preparedStatement.setInt(2, entity.getTreshold());
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Level entity) throws SQLException {
-//        TODO
-
+        super.preparedStatement.setInt(queryKeyIndex, entity.getId());
     }
 }

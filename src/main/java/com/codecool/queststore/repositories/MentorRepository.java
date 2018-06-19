@@ -7,10 +7,10 @@ import java.sql.SQLException;
 
 public class MentorRepository extends AbstractRepository<Mentor> {
     static {
-        ADD_QUERY = "";
-        EDIT_QUERY = "";
-        DELETE_QUERY = "";
-        EDIT_QUERY_KEY_INDEX = 0;
+        ADD_QUERY = "INSERT INTO mentors(login) VALUES(?)";
+        EDIT_QUERY = "UPDATE mentors SET login=? WHERE login=?";
+        DELETE_QUERY = "DELETE FROM mentors * WHERE login=?";
+        EDIT_QUERY_KEY_INDEX = 2;
     }
 
     public MentorRepository() throws PersistenceLayerException {
@@ -19,11 +19,11 @@ public class MentorRepository extends AbstractRepository<Mentor> {
 
     @Override
     void fillStatementWithColumnsData(Mentor entity) throws SQLException {
-//        TODO
+        super.preparedStatement.setString(1, entity.getLogin());
     }
 
     @Override
     void addPrimaryKeyToStatement(int queryKeyIndex, Mentor entity) throws SQLException {
-//        TODO
+        super.preparedStatement.setString(queryKeyIndex, entity.getLogin());
     }
 }
