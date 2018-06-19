@@ -1,13 +1,13 @@
 package com.codecool.queststore.criteria;
 
-import java.sql.SQLException;
+import com.codecool.queststore.repositories.PersistenceLayerException;
 
 public class RoleById extends GetById {
     static {
         QUERY = "SELECT * FROM roles WHERE id=?";
     }
 
-    public RoleById(int id) throws SQLException {
+    public RoleById(int id) throws PersistenceLayerException {
         super(id);
     }
 }
