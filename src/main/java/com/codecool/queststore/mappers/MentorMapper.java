@@ -1,5 +1,6 @@
 package com.codecool.queststore.mappers;
 
+import com.codecool.queststore.entities.UserData;
 import com.codecool.queststore.repositories.Repository;
 import com.codecool.queststore.repositories.Repositories;
 import com.codecool.queststore.repositories.RepositoryPool;
@@ -26,6 +27,6 @@ public class MentorMapper implements Mapper {
         SqlCriteria getClassesByMentor = new CodecoolClassByMentorLogin(login);
         List<CodecoolClass> classes = classRepository.query(getClassesByMentor);
 
-        return new Mentor(login, classes);
+        return new Mentor(new UserData(login), classes);
     }
 }

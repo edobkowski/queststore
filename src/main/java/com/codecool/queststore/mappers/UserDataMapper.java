@@ -3,17 +3,17 @@ package com.codecool.queststore.mappers;
 import com.codecool.queststore.criteria.RoleById;
 import com.codecool.queststore.criteria.SqlCriteria;
 import com.codecool.queststore.entities.Role;
-import com.codecool.queststore.entities.User;
+import com.codecool.queststore.entities.UserData;
 import com.codecool.queststore.repositories.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserMapper implements Mapper<User> {
+public class UserDataMapper implements Mapper<UserData> {
     private static final RepositoryPool REPOSITORY_POOL = RepositoryPool.getInstance();
 
     @Override
-    public User map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
+    public UserData map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         String login = resultSet.getString("login");
         String firstName = resultSet.getString("first_name");
         String lastName = resultSet.getString("last_name");
@@ -26,6 +26,6 @@ public class UserMapper implements Mapper<User> {
 
         int password = resultSet.getInt("password");
 
-        return new User(login, firstName, lastName, email, role, password);
+        return new UserData(login, firstName, lastName, email, role, password);
     }
 }
