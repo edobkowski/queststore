@@ -1,9 +1,7 @@
 package com.codecool.queststore.services;
 
 import com.codecool.queststore.criteria.AllArtifacts;
-import com.codecool.queststore.criteria.AllQuests;
 import com.codecool.queststore.criteria.ArtifactById;
-import com.codecool.queststore.criteria.QuestById;
 import com.codecool.queststore.entities.Artifact;
 import com.codecool.queststore.repositories.*;
 
