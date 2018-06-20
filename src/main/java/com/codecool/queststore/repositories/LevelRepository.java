@@ -7,10 +7,10 @@ import java.sql.SQLException;
 
 public class LevelRepository extends AbstractRepository<Level> {
     static {
-        ADD_QUERY = "INSERT INTO levels(name,treshold) VALUES(?,?)";
-        EDIT_QUERY = "UPDATE levels SET name=?, treshold=? WHERE id=?";
-        DELETE_QUERY = "DELETE * FROM levels WHERE id=?";
-        EDIT_QUERY_KEY_INDEX = 0;
+        ADD_QUERY = "INSERT INTO levels(name, threshold) VALUES(?,?)";
+        EDIT_QUERY = "UPDATE levels SET name=?, threshold=? WHERE id=?";
+        DELETE_QUERY = "DELETE FROM levels * WHERE id=?";
+        EDIT_QUERY_KEY_INDEX = 3;
     }
 
     public LevelRepository() throws PersistenceLayerException {
@@ -20,7 +20,7 @@ public class LevelRepository extends AbstractRepository<Level> {
     @Override
     void fillStatementWithColumnsData(Level entity) throws SQLException {
         super.preparedStatement.setString(1, entity.getName());
-        super.preparedStatement.setInt(2, entity.getTreshold());
+        super.preparedStatement.setInt(2, entity.getThreshold());
     }
 
     @Override
