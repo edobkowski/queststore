@@ -14,6 +14,15 @@ public class QuestManager {
         REPOSITORY_POOL = RepositoryPool.getInstance();
     }
 
+    public Quest get(int id) throws ServiceLayerException {
+        try {
+            Repository<Quest> questRepository = (QuestRepository) REPOSITORY_POOL.getRepository(Repositories.QUEST);
+            return questRepository.query(new QuestById(id)).get(0);
+        } catch (PersistenceLayerException e) {
+            throw new ServiceLayerException(String.format("Can't get quest (id: %d): %s", id, e.getMessage()));
+        }
+    }
+
     public List<Quest> getAll() throws ServiceLayerException {
 
         try {
@@ -52,6 +61,8 @@ public class QuestManager {
             quest.setName(name);
             quest.setDescription(description);
             quest.setReward(reward);
+
+            questRepository.update(quest);
 
         } catch (PersistenceLayerException e) {
 
