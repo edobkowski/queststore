@@ -58,3 +58,9 @@ INSERT INTO wallet_artifacts(wallet_id, artifact_id, quantity)
 VALUES (1, 2, 2),
        (1, 3, 1),
        (3, 2, 1);
+
+INSERT INTO levels(name, threshold)
+VALUES ('Noob', 100),
+       ('Peasant', 200),
+       ('PHP Developer', 300),
+       ('Checkpoint slayer', 500);
