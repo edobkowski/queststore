@@ -104,7 +104,7 @@ CREATE TABLE artifacts (
 CREATE TABLE wallet_artifacts (
     wallet_id INTEGER NOT NULL REFERENCES wallets(id),
     artifact_id INTEGER NOT NULL REFERENCES artifacts(id),
-    quantity INTEGER NOT NULL DEFAULT 0 CHECK (quantity >= 0),
+    isUsed BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY(wallet_id, artifact_id)
 );
 
