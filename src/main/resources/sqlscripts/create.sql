@@ -40,11 +40,9 @@ CREATE TABLE users (
 );
 
 
--- Students
-CREATE TABLE students (
-    login TEXT PRIMARY KEY REFERENCES users(login),
-    exp INTEGER NOT NULL DEFAULT 0,
-    class_id INTEGER
+-- Admins
+CREATE TABLE admins (
+    login TEXT PRIMARY KEY REFERENCES users(login)
 );
 
 
@@ -54,9 +52,11 @@ CREATE TABLE mentors (
 );
 
 
--- Admins
-CREATE TABLE admins (
-    login TEXT PRIMARY KEY REFERENCES users(login)
+-- Students
+CREATE TABLE students (
+    login TEXT PRIMARY KEY REFERENCES users(login),
+    exp INTEGER NOT NULL DEFAULT 0,
+    class_id INTEGER
 );
 
 
