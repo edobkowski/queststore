@@ -18,7 +18,7 @@ public class LevelMapper implements Mapper<Level> {
     }
 
     public String mapToJson(Level level) {
-        return String.format("{\"id\": \"%s\", \"name\": \"%s\", \"threshold\": %d}",
+        return String.format("{\"id\": %d, \"name\": \"%s\", \"threshold\": %d}",
                 level.getId(),
                 level.getName(),
                 level.getThreshold());

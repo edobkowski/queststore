@@ -1,26 +1,26 @@
 package com.codecool.queststore.criteria;
 
+import com.codecool.queststore.ConnectionProvider;
 import com.codecool.queststore.repositories.PersistenceLayerException;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AllQuests extends SqlCriteria{
-
-    static {
-        QUERY = "SELECT * FROM quests";
-    }
-
-    public AllQuests() throws PersistenceLayerException {
-        super();
-    }
+public class AllQuests implements SqlCriteria{
+    private final String QUERY = "SELECT * FROM quests";
 
     @Override
-    protected void setStatementValues() throws SQLException {
-    }
+    public PreparedStatement toPreparedStatement() throws PersistenceLayerException {
+        try {
+            Connection connection = ConnectionProvider.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
-    @Override
-    public PreparedStatement toPreparedStatement() {
-        return super.toPreparedStatement();
+            return preparedStatement;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new PersistenceLayerException("Can't perform this query due to " +
+                    "exception occurance when creating PreparedStatement");
+        }
     }
 }
