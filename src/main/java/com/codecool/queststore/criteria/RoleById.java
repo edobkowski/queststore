@@ -1,13 +1,33 @@
 package com.codecool.queststore.criteria;
 
+import com.codecool.queststore.ConnectionProvider;
 import com.codecool.queststore.repositories.PersistenceLayerException;
 
-public class RoleById extends GetById {
-    static {
-        QUERY = "SELECT * FROM roles WHERE id=?";
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class RoleById implements SqlCriteria {
+    private final String QUERY = "SELECT * FROM roles WHERE id=?";
+    private final int id;
+
+    public RoleById(int id) {
+        this.id = id;
     }
 
-    public RoleById(int id) throws PersistenceLayerException {
-        super(id);
+    @Override
+    public PreparedStatement toPreparedStatement() throws PersistenceLayerException {
+        try {
+            Connection connection = ConnectionProvider.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+
+            preparedStatement.setInt(1, this.id);
+
+            return preparedStatement;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new PersistenceLayerException("Can't perform this query due to " +
+                    "exception occurance when creating PreparedStatement");
+        }
     }
 }
