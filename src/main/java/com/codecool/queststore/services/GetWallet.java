@@ -6,7 +6,7 @@ import com.codecool.queststore.entities.Artifact;
 import com.codecool.queststore.entities.Wallet;
 import com.codecool.queststore.repositories.*;
 
-public class WalletManager {
+public class GetWallet {
 
     private static final RepositoryPool repositoryPool;
 
