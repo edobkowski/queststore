@@ -30,4 +30,37 @@ public class WalletMapper implements Mapper {
 
         return new Wallet(id, balance, artifacts);
     }
+
+    public String mapToJson(Wallet wallet) {
+
+        List<Artifact> artifacts = wallet.getArtifactList();
+        ArtifactMapper artifactMapper = new ArtifactMapper();
+
+        String artifactsJson = artifactMapper.mapToJson(artifacts);
+
+        return String.format("{\"id\": %d, \"ownerLogin\": \"%s\", \"balance\": %d, \"%s\"}",
+                wallet.getId(),
+                wallet.getOwnerLogin(),
+                wallet.getBalance(),
+                artifactsJson);
+    }
+
+    public String mapToJson(List<Wallet> wallets) {
+        StringBuilder json = new StringBuilder();
+
+        json.append("{\"wallets\": [");
+
+        int indexOfLastElement = wallets.size() - 1;
+        for (Wallet wallet: wallets) {
+            json.append(mapToJson(wallet));
+
+            if (wallets.indexOf(wallet) != indexOfLastElement) {
+                json.append(",");
+            }
+        }
+
+        json.append("]}");
+
+        return json.toString();
+    }
 }
