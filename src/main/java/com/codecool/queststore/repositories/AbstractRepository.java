@@ -39,6 +39,7 @@ public abstract class AbstractRepository<E> implements Repository<E> {
             this.fillStatementWithColumnsData(entity);
             this.preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new PersistenceLayerException("Can't add object to the database");
         }
     }
@@ -51,6 +52,7 @@ public abstract class AbstractRepository<E> implements Repository<E> {
             this.addPrimaryKeyToStatement(EDIT_QUERY_KEY_INDEX, entity);
             this.preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new PersistenceLayerException("Can't edit object in the database");
         }
     }
@@ -62,6 +64,7 @@ public abstract class AbstractRepository<E> implements Repository<E> {
             this.addPrimaryKeyToStatement(DELETE_QUERY_KEY_INDEX, entity);
             this.preparedStatement.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new PersistenceLayerException("Can't remove object from the database");
         }
     }
@@ -77,6 +80,7 @@ public abstract class AbstractRepository<E> implements Repository<E> {
             }
             return entities;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new PersistenceLayerException("Cannot perform this query");
         }
     }
