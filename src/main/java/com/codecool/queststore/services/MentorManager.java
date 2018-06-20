@@ -23,6 +23,16 @@ public class MentorManager {
         repositoryPool = RepositoryPool.getInstance();
     }
 
+    public Mentor get(String login) throws ServiceLayerException {
+        try {
+            Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
+                    .getRepository(Repositories.MENTOR);
+            return mentorRepository.query(new MentorByLogin(login)).get(0);
+        } catch (PersistenceLayerException e) {
+            throw new ServiceLayerException(String.format("Can't get mentor %s: %s", login, e.getMessage()));
+        }
+    }
+
     public List<Mentor> getAll() throws ServiceLayerException {
         try {
             Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
@@ -60,7 +70,7 @@ public class MentorManager {
             Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
                     .getRepository(Repositories.MENTOR);
 
-            Mentor mentor = mentorRepository.query(new MentorByLogin(login)).get(0);
+            Mentor mentor = this.get(login);
             mentor.getUserData().setLogin(login);
             mentor.getUserData().setFirstName(firstName);
             mentor.getUserData().setLastName(lastName);
@@ -80,7 +90,7 @@ public class MentorManager {
             Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
                     .getRepository(Repositories.MENTOR);
 
-            Mentor mentor = mentorRepository.query(new MentorByLogin(login)).get(0);
+            Mentor mentor = this.get(login);
             mentorRepository.delete(mentor);
         } catch (PersistenceLayerException e) {
             throw new ServiceLayerException(String.format("Can't remove %s: %s", login, e.getMessage()));

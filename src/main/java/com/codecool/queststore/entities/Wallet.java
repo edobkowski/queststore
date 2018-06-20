@@ -5,8 +5,9 @@ public class Wallet {
     private String ownerLogin;
     private int balance;
 
-    public Wallet() {
+    public Wallet(String ownerLogin) {
         this.balance = 0;
+        this.ownerLogin = ownerLogin;
     }
 
     public Wallet(int id, int balance) {
