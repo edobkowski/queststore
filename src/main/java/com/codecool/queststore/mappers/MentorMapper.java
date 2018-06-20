@@ -28,4 +28,36 @@ public class MentorMapper implements Mapper {
 
         return new Mentor(login, classes);
     }
+
+    public String mapToJson(Mentor mentor) {
+        String json;
+        UserData mentorUserData = mentor.getUserData();
+        json = String.format("{\"login\": \"%s\", \"first_name\": \"%s\", \"last_name\": %s, \"email\": \"%s\"}",
+                mentorUserData.getLogin(),
+                mentorUserData.getFirstName(),
+                mentorUserData.getLastName(),
+                mentorUserData.getEmail(),
+                mentor.getClasses());
+
+        return json;
+    }
+
+    public String mapToJson(List<Mentor> mentors) {
+        StringBuilder json = new StringBuilder();
+
+        json.append("{\"mentors\": [");
+
+        int indexOfLastElement = mentors.size() - 1;
+        for (Mentor mentor : mentors) {
+            json.append(mapToJson(mentor));
+
+            if (mentors.indexOf(mentor) != indexOfLastElement) {
+                json.append(",");
+            }
+        }
+
+        json.append("]}");
+
+        return json.toString();
+    }
 }
