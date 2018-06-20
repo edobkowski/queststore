@@ -53,7 +53,7 @@ public class RepositoryPool {
                 case CODECOOL_CLASS:
                     return new CodecoolClassRepository();
                 default:
-                    throw new PersistenceLayerException("There's no such a repository");
+                    throw new PersistenceLayerException("There's no such a repository: " + repositoryType.toString());
             }
         }
     }

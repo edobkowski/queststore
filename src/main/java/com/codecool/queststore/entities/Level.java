@@ -3,12 +3,16 @@ package com.codecool.queststore.entities;
 public class Level {
     private int id;
     private String name;
-    private int treshold;
+    private int threshold;
 
-    public Level(int id, String name, int treshold) {
-        this.id = id;
+    public Level(String name, int threshold) {
         this.name = name;
-        this.treshold = treshold;
+        this.threshold = threshold;
+    }
+
+    public Level(int id, String name, int threshold) {
+        this(name, threshold);
+        this.id = id;
     }
 
     public int getId() {
@@ -27,11 +31,11 @@ public class Level {
         this.name = name;
     }
 
-    public int getTreshold() {
-        return this.treshold;
+    public int getThreshold() {
+        return this.threshold;
     }
 
-    public void setTreshold(int treshold) {
-        this.treshold = treshold;
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
 }
