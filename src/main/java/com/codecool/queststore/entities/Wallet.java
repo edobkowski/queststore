@@ -1,17 +1,22 @@
 package com.codecool.queststore.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Wallet {
     private int id;
     private String ownerLogin;
     private int balance;
+    private List<Artifact> artifactList;
 
     public Wallet() {
         this.balance = 0;
     }
 
-    public Wallet(int id, int balance) {
+    public Wallet(int id, int balance, List<Artifact> artifactList) {
         this.id = id;
         this.balance = balance;
+        this.artifactList = artifactList;
     }
 
     public int getId() {
@@ -32,5 +37,13 @@ public class Wallet {
 
     public void addBalance (int valueToAdd) {
         this.balance += valueToAdd;
+    }
+
+    public List<Artifact> getArtifactList() {
+        return artifactList;
+    }
+
+    public void setArtifactList(List<Artifact> artifactList) {
+        this.artifactList = artifactList;
     }
 }
