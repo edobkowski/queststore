@@ -79,7 +79,8 @@ CREATE TABLE class_mentors (
 CREATE TABLE levels (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    treshold INTEGER NOT NULL CHECK (treshold > 0));
+    threshold INTEGER NOT NULL CHECK (threshold > 0)
+);
 
 
 -- Wallets
