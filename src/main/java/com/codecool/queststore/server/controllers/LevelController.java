@@ -6,6 +6,7 @@ import com.codecool.queststore.services.LevelManager;
 import com.codecool.queststore.services.ServiceLayerException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.URI;
@@ -30,10 +31,13 @@ public class LevelController implements HttpHandler {
         boolean uriHasIdentifier = URIparser.hasIdentifier(uri);
         int identifier = uriHasIdentifier ? URIparser.parseIdentifierToInt(uri) : -1;
 
+        boolean uriHasQueryString = URIparser.hasQueryString(uri);
+        String queryString = uriHasQueryString ? URIparser.getQueryString(uri) : "";
+
         exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
         if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-            exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "GET, OPTIONS, PUT, DELETE");
             exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type,Authorization");
             exchange.sendResponseHeaders(204, -1);
         }
@@ -53,18 +57,17 @@ public class LevelController implements HttpHandler {
             }
         } else if (requestMethod.equals("POST")) {
             try {
-                InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), "utf-8");
-                BufferedReader br = new BufferedReader(isr);
-                String formData = br.readLine();
+                String formData = RequestParser.getRequestBodyString(exchange);
 
                 Map<String, String> attributesAndValues = RequestParser.parseFormData(formData);
-
-                System.out.println(attributesAndValues);
 
                 levelManager.create(attributesAndValues.get("name"),
                         Integer.parseInt(attributesAndValues.get("threshold")));
 
-                exchange.sendResponseHeaders(201, response.length());
+                String requestAddress = exchange.getRequestHeaders().get("Referer").get(0);
+                exchange.getResponseHeaders().set("Location", requestAddress);
+
+                exchange.sendResponseHeaders(302, 0);
             } catch (ServiceLayerException e) {
                 response = e.getMessage();
 
@@ -74,17 +77,11 @@ public class LevelController implements HttpHandler {
         } else if (requestMethod.equals("PUT")) {
             try {
                 if (uriHasIdentifier) {
-                    InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), "utf-8");
-                    BufferedReader br = new BufferedReader(isr);
-                    String formData = br.readLine();
+                    JSONObject levelData = new JSONObject(RequestParser.getRequestBodyString(exchange));
 
-                    Map<String, String> attributesAndValues = RequestParser.parseFormData(formData);
-
-                    System.out.println(attributesAndValues);
-
-                    int id = Integer.parseInt(attributesAndValues.get("id"));
-                    String name = attributesAndValues.get("name");
-                    int threshold = Integer.parseInt(attributesAndValues.get("threshold"));
+                    int id = levelData.getInt("id");
+                    String name = levelData.getString("name");
+                    int threshold = levelData.getInt("threshold");
 
                     levelManager.edit(id, name, threshold);
 
@@ -124,30 +121,5 @@ public class LevelController implements HttpHandler {
         String mimeTypeCode = type.getTypeCode();
 
         exchange.getResponseHeaders().set("Content-Type", mimeTypeCode);
-    }
-
-    private static String getStringFromInputStream(InputStream is) {
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return sb.toString();
     }
 }
