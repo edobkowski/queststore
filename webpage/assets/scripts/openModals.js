@@ -60,6 +60,9 @@ async function openModal(buttonId, button) {
     case "open-remove-level-modal":
       element.innerHTML = await addRemoveLevelModal(entityId);
       break;
+    case "open-buy-artifact-modal":
+      element.innerHTML = await addBuyArtifactModal(entityId);
+      break
   }
   
   $('#common-modal').modal('show');
@@ -243,6 +246,28 @@ async function addRemoveLevelModal(id) {
   '  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
   '  <button type="submit" class="btn btn-danger" data-id="' + levelData.id + '" onclick="deleteLevel(this); javascript:window.location.reload()">Delete</button>' +
   '</div>'; 
+
+  return filledModal;
+}
+
+async function addBuyArtifactModal(id) {
+  var artifactData = await getJsonFromPath("http://127.0.0.1:8080/store/" + id);
+  var artifactData = artifactData.artifacts[0];
+
+  var filledModal =
+  '<div class="modal-header">' +
+  '  <h5 class="modal-title">Buy artifact</h5>' +
+  '  <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+  '    <span aria-hidden="true">&times;</span>' +
+  '  </button>' +
+  '</div>' +
+  '<div class="modal-body">' +
+  '  <p>Do you really want to buy ' + artifactData.name + '?</p>' +
+  '</div>' +
+  '<div class="modal-footer">' +
+  '  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+  '  <button type="submit" class="btn btn-success" data-id="' + artifactData.id + '" onclick="buyArtifact(this); javascript:window.location.reload()">Buy</button>' +
+  '</div>';
 
   return filledModal;
 }
