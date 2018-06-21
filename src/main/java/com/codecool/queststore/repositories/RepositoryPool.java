@@ -52,6 +52,10 @@ public class RepositoryPool {
                     return new LevelRepository();
                 case CODECOOL_CLASS:
                     return new CodecoolClassRepository();
+                case CLASS_MENTORS:
+                    return new ClassMentorsRepository();
+                case WALLET_ARTIFACTS:
+                    return new WalletArtifactsRepository();
                 default:
                     throw new PersistenceLayerException("There's no such a repository: " + repositoryType.toString());
             }

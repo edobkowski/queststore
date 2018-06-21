@@ -11,5 +11,7 @@ public enum Repositories {
     QUEST,
     ARTIFACT,
     WALLET,
-    LEVEL;
+    LEVEL,
+    CLASS_MENTORS,
+    WALLET_ARTIFACTS;
 }
