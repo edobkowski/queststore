@@ -14,11 +14,11 @@ public class LevelManager {
         repositoryPool = RepositoryPool.getInstance();
     }
 
-    public Level get(int id) throws ServiceLayerException {
+    public List<Level> get(int id) throws ServiceLayerException {
         try {
             Repository<Level> levelRepository = (LevelRepository) repositoryPool
                     .getRepository(Repositories.LEVEL);
-            return levelRepository.query(new LevelById(id)).get(0);
+            return levelRepository.query(new LevelById(id));
         } catch (PersistenceLayerException e) {
             throw new ServiceLayerException(String.format("Can't get level (id: %d): %s", id, e.getMessage()));
         }
@@ -52,7 +52,7 @@ public class LevelManager {
             Repository<Level> levelRepository = (LevelRepository) repositoryPool
                     .getRepository(Repositories.LEVEL);
 
-            Level level = this.get(id);
+            Level level = this.get(id).get(0);
             level.setId(id);
             level.setName(name);
             level.setThreshold(threshold);
@@ -68,7 +68,7 @@ public class LevelManager {
             Repository<Level> levelRepository = (LevelRepository) repositoryPool
                     .getRepository(Repositories.LEVEL);
 
-            Level level = this.get(id);
+            Level level = this.get(id).get(0);
             levelRepository.delete(level);
         } catch (PersistenceLayerException e) {
             throw new ServiceLayerException(String.format("Can't remove level (id: %d): %s", id, e.getMessage()));

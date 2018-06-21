@@ -23,11 +23,11 @@ public class MentorManager {
         repositoryPool = RepositoryPool.getInstance();
     }
 
-    public Mentor get(String login) throws ServiceLayerException {
+    public List<Mentor> get(String login) throws ServiceLayerException {
         try {
             Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
                     .getRepository(Repositories.MENTOR);
-            return mentorRepository.query(new MentorByLogin(login)).get(0);
+            return mentorRepository.query(new MentorByLogin(login));
         } catch (PersistenceLayerException e) {
             throw new ServiceLayerException(String.format("Can't get mentor %s: %s", login, e.getMessage()));
         }
@@ -39,7 +39,7 @@ public class MentorManager {
                     .getRepository(Repositories.MENTOR);
             return mentorRepository.query(new AllMentors());
         } catch (PersistenceLayerException e) {
-            throw new ServiceLayerException(String.format("Can't get all mentors: " + e.getMessage()));
+            throw new ServiceLayerException(String.format("Can't get all mentors: %s", e.getMessage()));
         }
     }
 
@@ -70,7 +70,7 @@ public class MentorManager {
             Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
                     .getRepository(Repositories.MENTOR);
 
-            Mentor mentor = this.get(login);
+            Mentor mentor = this.get(login).get(0);
             mentor.getUserData().setLogin(login);
             mentor.getUserData().setFirstName(firstName);
             mentor.getUserData().setLastName(lastName);
@@ -90,7 +90,7 @@ public class MentorManager {
             Repository<Mentor> mentorRepository = (MentorRepository) repositoryPool
                     .getRepository(Repositories.MENTOR);
 
-            Mentor mentor = this.get(login);
+            Mentor mentor = this.get(login).get(0);
             mentorRepository.delete(mentor);
         } catch (PersistenceLayerException e) {
             throw new ServiceLayerException(String.format("Can't remove %s: %s", login, e.getMessage()));

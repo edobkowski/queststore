@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CodecoolClassMapper implements Mapper {
+public class CodecoolClassMapper implements Mapper<CodecoolClass> {
     @Override
     public CodecoolClass map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         int id = resultSet.getInt("id");

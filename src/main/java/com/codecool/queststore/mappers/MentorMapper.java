@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MentorMapper implements Mapper {
+public class MentorMapper implements Mapper<Mentor> {
     private static final RepositoryPool REPOSITORY_POOL = RepositoryPool.getInstance();
 
     @Override
