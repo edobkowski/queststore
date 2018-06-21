@@ -1,9 +1,6 @@
 package com.codecool.queststore.server;
 
-import com.codecool.queststore.server.controllers.LevelController;
-import com.codecool.queststore.server.controllers.RootController;
-import com.codecool.queststore.server.controllers.MentorController;
-import com.codecool.queststore.server.controllers.CodecoolClassController;
+import com.codecool.queststore.server.controllers.*;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -17,6 +14,7 @@ public class Server {
         httpServer.createContext("/mentors", new MentorController());
         httpServer.createContext("/classes", new CodecoolClassController());
         httpServer.createContext("/levels", new LevelController());
+        httpServer.createContext("/store", new StoreController());
 
         httpServer.start();
     }
