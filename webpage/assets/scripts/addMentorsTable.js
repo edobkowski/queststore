@@ -41,16 +41,16 @@ function addMentorRows(mentorsJson, mentorsDiv) {
   for (let i = 0; i < mentorsJson.mentors.length; i++) {
     const mentor = mentorsJson.mentors[i];
 
-    const filledRow = '<tr>' +
-      '  <th scope="row" data-login=' + mentor.login + '>' + (i+1) + '</th>' +
-      '  <td>' + mentor.firstName + '</td>' +
-      '  <td>' + mentor.lastName + '</td>' +
+    const filledRow = '<tr scope="row" data-id=' + mentor.login + '>' +
+      '  <th>' + (i+1) + '</th>' +
+      '  <td>' + mentor.first_name + '</td>' +
+      '  <td>' + mentor.last_name + '</td>' +
       '  <td>' + mentor.email + '</td>' +
       '  <td>' + mentor.login + '</td>' +
       '  <td>' + mentor.classes.map(codecoolClass => codecoolClass.name).join(', ') + '</td>' +
       '  <td class="center-column">' +
-      '    <i class="fas fa-pencil-alt" id="open-edit-mentor-modal" onclick="openModal(this.id)"></i>' +
-      '    <i class="fas fa-trash-alt" id="open-remove-mentor-modal" onclick="openModal(this.id)"></i>' +
+      '    <i class="fas fa-pencil-alt" id="open-edit-mentor-modal" data-id="' + mentor.login + '" onclick="openModal(this.id, this)"></i>' +
+      '    <i class="fas fa-trash-alt" id="open-remove-mentor-modal" data-id="' + mentor.login + '" onclick="openModal(this.id, this)"></i>' +
       '  </td>' +
       '</tr>';
 
@@ -58,4 +58,4 @@ function addMentorRows(mentorsJson, mentorsDiv) {
   }
 }
 
-// createTableFromJson("http://127.0.0.1:8080/mentors");
+createTableFromJson("http://127.0.0.1:8080/mentors");

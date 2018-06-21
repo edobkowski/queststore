@@ -43,10 +43,10 @@ async function openModal(buttonId, button) {
 
   switch (buttonId) {
     case "open-edit-mentor-modal":
-      modalFilePath = "assets/modals/edit_mentor_modal.html";
+      element.innerHTML = await addFilledEditMentorModal(entityId);
       break;
     case "open-remove-mentor-modal":
-      modalFilePath = "assets/modals/remove_mentor_modal.html";
+      element.innerHTML = await addRemoveMentorModal(entityId);
       break;
     case "open-edit-class-modal":
       modalFilePath = "assets/modals/edit_class_modal.html";
@@ -65,6 +65,79 @@ async function openModal(buttonId, button) {
   $('#common-modal').modal('show');
   
   return;
+}
+
+async function addFilledEditMentorModal(login) {
+  var mentorData = await getJsonFromPath("http://127.0.0.1:8080/mentors/" + login);
+  var mentorData = mentorData.mentors[0];
+
+  var filledModal = 
+  '<div class="modal-header">' +
+  '  <h5 class="modal-title">Edit mentor</h5>' +
+  '  <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+  '    <span aria-hidden="true">&times;</span>' +
+  '  </button>' +
+  '</div>' +
+  '<div class="modal-body">' +
+  '  <form id="editMentorForm" data-id="' + mentorData.login + '" onsubmit="return handleEditMentorForm(this)">' +
+  '    <div class="form-group">' +
+  '      <label for="mentor-first-name">First name</label>' +
+  '      <input type="text" class="form-control" id="mentor-first-name" value="' + mentorData.first_name + '">' +
+  '    </div>' +
+  '    <div class="form-group">' +
+  '      <label for="mentor-last-name">Last name</label>' +
+  '      <input type="text" class="form-control" id="mentor-last-name" value="' + mentorData.last_name + '">' +
+  '    </div>' +
+  '    <div class="form-group">' +
+  '      <label for="mentor-email">Email address</label>' +
+  '      <input type="email" class="form-control" id="mentor-email" value="' + mentorData.email + '">' +
+  '    </div>' +
+  '    <div class="form-group">' +
+  '      <label>Select classes</label>' +
+
+  '      <div class="custom-control custom-checkbox">' +
+  '        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>' +
+  '        <label class="custom-control-label" for="customCheck1">2017.11</label>' +
+  '      </div>' +
+  '      <div class="custom-control custom-checkbox">' +
+  '        <input type="checkbox" class="custom-control-input" id="customCheck2">' +
+  '        <label class="custom-control-label" for="customCheck2">2018.04</label>' +
+  '      </div>' +
+  '      <div class="custom-control custom-checkbox">' +
+  '        <input type="checkbox" class="custom-control-input" id="customCheck3" checked>' +
+  '        <label class="custom-control-label" for="customCheck3">2018.05</label>' +
+  '      </div>' +
+  '    </div>' +
+  '    <div class="modal-footer">' +
+  '      <button type="submit" class="btn btn-success">Save changes</button>' +
+  '      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>' +
+  '    </div>' +
+  '  </form>' +
+  '</div>'; 
+
+  return filledModal;
+}
+
+async function addRemoveMentorModal(login) {
+  var mentorData = await getJsonFromPath("http://127.0.0.1:8080/mentors/" + login);
+  var mentorData = mentorData.mentors[0];
+
+  var filledModal =
+  '<div class="modal-header">' +
+  '  <h5 class="modal-title">Remove mentor</h5>' +
+  '  <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+  '    <span aria-hidden="true">&times;</span>' +
+  '  </button>' +
+  '</div>' +
+  '<div class="modal-body">' +
+  '  <p>Are you sure you want to delete ' + mentorData.first_name + ' ' + mentorData.last_name + ' </p>' +
+  '</div>' +
+  '<div class="modal-footer">' +
+  '  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+  '  <button type="submit" class="btn btn-danger" data-id="' + mentorData.login + '" onclick="deleteMentor(this); javascript:window.location.reload()">Delete</button>' +
+  '</div>'; 
+
+  return filledModal;
 }
 
 async function addFilledEditLevelModal(id) {
