@@ -49,10 +49,10 @@ async function openModal(buttonId, button) {
       element.innerHTML = await addRemoveMentorModal(entityId);
       break;
     case "open-edit-class-modal":
-      modalFilePath = "assets/modals/edit_class_modal.html";
+      element.innerHTML = await addFilledEditClassModal(entityId);
       break;
     case "open-remove-class-modal":
-      modalFilePath = "assets/modals/remove_class_modal.html";
+      element.innerHTML = await addRemoveClassModal(entityId);
       break;
     case "open-edit-level-modal":
       element.innerHTML = await addFilledEditLevelModal(entityId);
@@ -136,6 +136,56 @@ async function addRemoveMentorModal(login) {
   '  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
   '  <button type="submit" class="btn btn-danger" data-id="' + mentorData.login + '" onclick="deleteMentor(this); javascript:window.location.reload()">Delete</button>' +
   '</div>'; 
+
+  return filledModal;
+}
+
+async function addFilledEditClassModal(id) {
+  var classData = await getJsonFromPath("http://127.0.0.1:8080/classes/" + id);
+  var classData = classData.classes[0];
+
+  var filledModal = 
+  '<div class="modal-header">' +
+  '  <h5 class="modal-title">Edit class</h5>' +
+  '  <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+  '    <span aria-hidden="true">&times;</span>' +
+  '  </button>' +
+  '</div>' +
+  '<div class="modal-body">' +
+  '  <form id="editClassForm" data-id="' + classData.id + '" onsubmit="return handleEditClassForm(this)">' +
+  '  <form>' +
+  '    <div class="form-group">' +
+  '      <label for="codecool-class-name">Class name</label>' +
+  '      <input type="text" class="form-control" id="codecool-class-name" value="' + classData.name + '" placeholder="Enter class name">' +
+  '    </div>' +
+  '    <div class="modal-footer">' +
+  '      <button type="submit" class="btn btn-success">Save changes</button>' +
+  '      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>' +
+  '    </div>' +
+  '  </form>' +
+  '</div>';
+
+  return filledModal;
+}
+
+async function addRemoveClassModal(id) {
+  var classData = await getJsonFromPath("http://127.0.0.1:8080/classes/" + id);
+  var classData = classData.classes[0];
+
+  var filledModal =
+  '<div class="modal-header">' +
+  '  <h5 class="modal-title">Remove class</h5>' +
+  '  <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+  '    <span aria-hidden="true">&times;</span>' +
+  '  </button>' +
+  '</div>' +
+  '<div class="modal-body">' +
+  '  <p>Are you sure you want to delete ' + classData.name + ' </p>' +
+  '</div>' +
+  '<div class="modal-footer">' +
+  '  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+  '  <button type="submit" class="btn btn-danger" data-id="' + classData.id + '" onclick="deleteClass(this); javascript:window.location.reload()">Delete</button>' +
+  '</div>';
 
   return filledModal;
 }

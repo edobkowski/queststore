@@ -40,8 +40,8 @@ function addClassRows(classesJson, classesDiv) {
       '  <th scope="row">' + (i + 1) + '</th>' +
       '  <td>' + codecoolClass.name + '</td>' +
       '  <td class="center-column">' +
-      '    <i class="fas fa-pencil-alt" id="open-edit-class-modal" onclick="openModal(this.id)"></i>' +
-      '    <i class="fas fa-trash-alt" id="open-remove-class-modal" onclick="openModal(this.id)"></i>' +
+      '    <i class="fas fa-pencil-alt" id="open-edit-class-modal" data-id=' + codecoolClass.id + ' onclick="openModal(this.id, this)"></i>' +
+      '    <i class="fas fa-trash-alt" id="open-remove-class-modal" data-id=' + codecoolClass.id + ' onclick="openModal(this.id, this)"></i>' +
       '  </td>' +
       '</tr>';
 
