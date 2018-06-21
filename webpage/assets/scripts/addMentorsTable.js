@@ -1,7 +1,7 @@
 var mentorsSectionHeader = '<hr>' +
             '<h3>List of mentors</h3>';
             
-var mentorsTableStructure = "<table class=\"table\">" + 
+var mentorsTableStructure = '<table class="table">' + 
             ' <thead class="thead-dark">' + 
             '   <tr>' +
             '     <th scope="col"></th>' +

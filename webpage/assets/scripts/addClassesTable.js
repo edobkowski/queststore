@@ -1,7 +1,7 @@
 var classesSectionHeader = '<hr>' +
             '<h3>List of classes</h3>';
             
-var classesTableStructure = '<table class="table w-25">' + 
+var classesTableStructure = '<table class="table">' + 
 						'	<thead class="thead-dark">' + 
 						'		<tr>' + 
 						'			<th scope="col"></th>' + 

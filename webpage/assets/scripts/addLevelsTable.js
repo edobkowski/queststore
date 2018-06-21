@@ -1,7 +1,7 @@
 var levelsSectionHeader = "<hr>" +
             "<h3>List of levels</h3>";
             
-var levelsTableStructure = "<table class=\"table w-75\">" + 
+var levelsTableStructure = '<table class="table">' + 
             ' <thead class="thead-dark">' + 
             '   <tr>' +
             '     <th scope="col"></th>' +
