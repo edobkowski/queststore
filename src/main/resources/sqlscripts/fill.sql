@@ -54,7 +54,7 @@ VALUES ('Combat training', 'Private mentoring', 50),
        ('Sanctuary', 'You can spend a day in home office', 300),
        ('Time travel', 'Extend SI week assignment deadline by one day', 500);
 
-INSERT INTO wallet_artifacts(wallet_id, artifact_id, quantity)
+INSERT INTO wallet_artifacts(wallet_id, artifact_id)
 VALUES (1, 2, 2),
        (1, 3, 1),
        (3, 2, 1);

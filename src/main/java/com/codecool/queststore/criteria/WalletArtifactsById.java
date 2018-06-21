@@ -7,12 +7,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CodecoolClassByMentorLogin implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM classes WHERE id IN (SELECT * FROM class_mentors WHERE mentor_login=?)";
-    private final String login;
+public class WalletArtifactsById implements SqlCriteria {
+    private final String QUERY = "SELECT * FROM wallet_artifacts WHERE wallet_id=? AND artifact_id=?";
+    private final int walletId;
+    private final int artifactId;
 
-    public CodecoolClassByMentorLogin(String login) {
-        this.login = login;
+    public WalletArtifactsById(int walletId, int artifactId) {
+        this.walletId = walletId;
+        this.artifactId = artifactId;
     }
 
     @Override
@@ -21,7 +23,8 @@ public class CodecoolClassByMentorLogin implements SqlCriteria {
             Connection connection = ConnectionProvider.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
-            preparedStatement.setString(1, this.login);
+            preparedStatement.setInt(1, this.walletId);
+            preparedStatement.setInt(2, this.artifactId);
 
             return preparedStatement;
         } catch (SQLException e) {

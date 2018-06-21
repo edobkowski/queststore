@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AllArtifacts implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM students";
+    private final String QUERY = "SELECT * FROM artifacts";
 
     @Override
     public PreparedStatement toPreparedStatement() throws PersistenceLayerException {
