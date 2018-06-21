@@ -42,9 +42,9 @@ public class MentorController implements HttpHandler {
 
         if (requestMethod.equals("GET")) {
             try {
-                List<Mentor> classes = uriHasIdentifier ?
+                List<Mentor> mentors = uriHasIdentifier ?
                         mentorManager.get(identifier) : mentorManager.getAll();
-                response = mentorMapper.mapToJson(classes);
+                response = mentorMapper.mapToJson(mentors);
 
                 setResponseHeader(exchange, MimeType.JSON);
                 exchange.sendResponseHeaders(200, response.length());
@@ -62,6 +62,7 @@ public class MentorController implements HttpHandler {
 
                 mentorManager.create("jkowalski", "Jan", "Kowalski", "jan.kowalski@cc.pl", "haslo", classes);
 
+                setResponseHeader(exchange, MimeType.JSON);
                 exchange.sendResponseHeaders(201, response.length());
             } catch (ServiceLayerException e) {
                 response = e.getMessage();
