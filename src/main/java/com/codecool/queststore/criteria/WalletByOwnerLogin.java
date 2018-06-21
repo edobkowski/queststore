@@ -1,6 +1,5 @@
 package com.codecool.queststore.criteria;
 
-
 import com.codecool.queststore.ConnectionProvider;
 import com.codecool.queststore.repositories.PersistenceLayerException;
 
@@ -8,13 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ArtifactByWalletId implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM artifacts WHERE id IN" +
-                                 "(SELECT artifact_id FROM wallet_artifacts WHERE wallet_id=?)";
-    private final int id;
+public class WalletByOwnerLogin  implements SqlCriteria {
+    private final String QUERY = "SELECT * FROM wallets WHERE owner_login=?";
+    private final String login;
 
-    public ArtifactByWalletId(int id) {
-        this.id = id;
+    public WalletByOwnerLogin(String login) {
+        this.login = login;
     }
 
     @Override
@@ -23,7 +21,7 @@ public class ArtifactByWalletId implements SqlCriteria {
             Connection connection = ConnectionProvider.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
-            preparedStatement.setInt(1, this.id);
+            preparedStatement.setString(1, this.login);
 
             return preparedStatement;
         } catch (SQLException e) {

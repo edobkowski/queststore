@@ -9,7 +9,7 @@ public class WalletArtifacts {
     public WalletArtifacts(int walletId, int artifactId) {
         this.walletId = walletId;
         this.artifactId = artifactId;
-        this.quantity = 1;
+        this.quantity = 0;
     }
 
     public WalletArtifacts(int walletId, int artifactId, int quantity) {

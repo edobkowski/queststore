@@ -14,10 +14,11 @@ public class QuestManager {
         REPOSITORY_POOL = RepositoryPool.getInstance();
     }
 
-    public Quest get(int id) throws ServiceLayerException {
+    public List<Quest> get(int id) throws ServiceLayerException {
         try {
-            Repository<Quest> questRepository = (QuestRepository) REPOSITORY_POOL.getRepository(Repositories.QUEST);
-            return questRepository.query(new QuestById(id)).get(0);
+            Repository<Quest> questRepository = (QuestRepository) REPOSITORY_POOL
+                    .getRepository(Repositories.QUEST);
+            return questRepository.query(new QuestById(id));
         } catch (PersistenceLayerException e) {
             throw new ServiceLayerException(String.format("Can't get quest (id: %d): %s", id, e.getMessage()));
         }
@@ -27,7 +28,8 @@ public class QuestManager {
 
         try {
 
-            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL.getRepository(Repositories.QUEST);
+            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL
+                    .getRepository(Repositories.QUEST);
             List<Quest> quests = questRepository.query(new AllQuests());
 
             return quests;
@@ -42,7 +44,8 @@ public class QuestManager {
         try {
 
             Quest quest = new Quest(name, description, reward);
-            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL.getRepository(Repositories.QUEST);
+            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL
+                    .getRepository(Repositories.QUEST);
             questRepository.add(quest);
 
         } catch (PersistenceLayerException e) {
@@ -55,8 +58,9 @@ public class QuestManager {
 
         try {
 
-            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL.getRepository(Repositories.QUEST);
-            Quest quest = questRepository.query(new QuestById(id)).get(0);
+            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL
+                    .getRepository(Repositories.QUEST);
+            Quest quest = this.get(id).get(0);
 
             quest.setName(name);
             quest.setDescription(description);
@@ -74,8 +78,9 @@ public class QuestManager {
 
         try {
 
-            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL.getRepository(Repositories.QUEST);
-            Quest quest = questRepository.query(new QuestById(id)).get(0);
+            Repository<Quest> questRepository = (QuestRepository)REPOSITORY_POOL
+                    .getRepository(Repositories.QUEST);
+            Quest quest = this.get(id).get(0);
             questRepository.delete(quest);
 
         } catch (PersistenceLayerException e) {
