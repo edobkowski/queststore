@@ -19,6 +19,19 @@ public class StudentManager {
         REPOSITORY_POOL = RepositoryPool.getInstance();
     }
 
+    public Student get(String login) throws ServiceLayerException {
+
+        try {
+
+            Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL.getRepository(Repositories.STUDENT);
+            return studentRepository.query(new StudentByLogin(login)).get(0);
+
+        } catch (PersistenceLayerException e) {
+
+            throw new ServiceLayerException(String.format("Can't get quest (login: %s): %s", login, e.getMessage()));
+        }
+    }
+
     public List<Student> getAll() throws ServiceLayerException {
 
         try {
@@ -29,13 +42,13 @@ public class StudentManager {
             return students;
 
         } catch (PersistenceLayerException e) {
+
             throw new ServiceLayerException("Can't get students: " + e.getMessage());
         }
     }
 
     public void create(String login, String firstName, String lastName, String email, String password)
                                                                             throws ServiceLayerException {
-
         try {
 
             SqlCriteria getRoleByName = new RoleByName("student");
@@ -58,7 +71,6 @@ public class StudentManager {
         } catch (PersistenceLayerException e) {
 
             throw new ServiceLayerException("Can't create student: " + e.getMessage());
-
         }
     }
 
@@ -68,7 +80,7 @@ public class StudentManager {
         try {
 
             Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL.getRepository(Repositories.STUDENT);
-            Student student = studentRepository.query(new StudentByLogin(login)).get(0);
+            Student student = this.get(login);
 
             student.getUserData().setFirstName(firstName);
             student.getUserData().setLastName(lastName);
@@ -80,7 +92,6 @@ public class StudentManager {
         } catch (PersistenceLayerException e) {
 
             throw new ServiceLayerException("Can't edit student: " + e.getMessage());
-
         }
     }
 
@@ -89,10 +100,11 @@ public class StudentManager {
         try {
 
             Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL.getRepository(Repositories.STUDENT);
-            Student student = studentRepository.query(new StudentByLogin(login)).get(0);
+            Student student = this.get(login);
             studentRepository.delete(student);
 
         } catch (PersistenceLayerException e) {
+
             throw new ServiceLayerException("Can't remove student: " + e.getMessage());
         }
     }
