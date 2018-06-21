@@ -83,7 +83,7 @@ async function openModal(buttonId, button) {
 }
 
 async function addBuyArtifactModal(id) {
-  var artifactData = await getJsonFromPath("http://127.0.0.1:8080/artifacts/" + id);
+  var artifactData = await getJsonFromPath("http://127.0.0.1:8080/store/" + id);
   var artifactData = artifactData.artifacts[0];
 
   var filledModal =

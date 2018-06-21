@@ -1,7 +1,7 @@
 function buyArtifact(deleteButton) {
   var elementId = deleteButton.dataset.id;
 
-  var url = 'http://127.0.0.1:8080/artifacts/' + elementId;
+  var url = 'http://127.0.0.1:8080/store/' + elementId;
 
   fetch(url, {
     method: 'POST',
