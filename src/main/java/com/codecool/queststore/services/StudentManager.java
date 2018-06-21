@@ -19,16 +19,17 @@ public class StudentManager {
         REPOSITORY_POOL = RepositoryPool.getInstance();
     }
 
-    public Student get(String login) throws ServiceLayerException {
-
+    public List<Student> get(String login) throws ServiceLayerException {
         try {
 
-            Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL.getRepository(Repositories.STUDENT);
-            return studentRepository.query(new StudentByLogin(login)).get(0);
+            Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL
+                    .getRepository(Repositories.STUDENT);
+            return studentRepository.query(new StudentByLogin(login));
 
         } catch (PersistenceLayerException e) {
 
             throw new ServiceLayerException(String.format("Can't get quest (login: %s): %s", login, e.getMessage()));
+            
         }
     }
 
@@ -80,7 +81,7 @@ public class StudentManager {
         try {
 
             Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL.getRepository(Repositories.STUDENT);
-            Student student = this.get(login);
+            Student student = this.get(login).get(0);
 
             student.getUserData().setFirstName(firstName);
             student.getUserData().setLastName(lastName);
@@ -100,7 +101,7 @@ public class StudentManager {
         try {
 
             Repository<Student> studentRepository = (StudentRepository)REPOSITORY_POOL.getRepository(Repositories.STUDENT);
-            Student student = this.get(login);
+            Student student = this.get(login).get(0);
             studentRepository.delete(student);
 
         } catch (PersistenceLayerException e) {
