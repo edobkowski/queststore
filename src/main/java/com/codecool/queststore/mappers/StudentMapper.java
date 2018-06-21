@@ -47,7 +47,7 @@ public class StudentMapper implements Mapper {
         String codecoolClassJson = codecoolClassMapper.mapToJson(codecoolClass);
         String walletJson = walletMapper.mapToJson(wallet);
 
-        return String.format("{\"login\": \"%s\", \"fistname\": \"%s\", \"lastname\": \"%s\",, \"email\": \"%s\", \"class\": \"%s\"}",
+        return String.format("{\"login\": \"%s\", \"fistname\": \"%s\", \"lastname\": \"%s\", \"email\": \"%s\", \"class\": \"%s\"}",
                 student.getUserData().getLogin(),
                 student.getUserData().getFirstName(),
                 student.getUserData().getLastName(),
