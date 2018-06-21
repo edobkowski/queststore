@@ -1,11 +1,11 @@
 package com.codecool.queststore.repositories;
 
-import com.codecool.queststore.entities.User;
-import com.codecool.queststore.mappers.UserMapper;
+import com.codecool.queststore.entities.UserData;
+import com.codecool.queststore.mappers.UserDataMapper;
 
 import java.sql.SQLException;
 
-public class UserRepository extends AbstractRepository<User> {
+public class UserDataRepository extends AbstractRepository<UserData> {
     static {
         ADD_QUERY = "INSERT INTO users(login, first_name, last_name, email, role_id, password) VALUES(?,?,?,?,?,?)";
         EDIT_QUERY = "UPDATE users SET login=?, first_name=?, last_name=?, email=?, role_id=?, password=? WHERE login=?";
@@ -13,12 +13,12 @@ public class UserRepository extends AbstractRepository<User> {
         EDIT_QUERY_KEY_INDEX = 7;
     }
 
-    public UserRepository() throws PersistenceLayerException {
-        super.mapper = new UserMapper();
+    public UserDataRepository() throws PersistenceLayerException {
+        super.mapper = new UserDataMapper();
     }
 
     @Override
-    void fillStatementWithColumnsData(User entity) throws SQLException {
+    void fillStatementWithColumnsData(UserData entity) throws SQLException {
         super.preparedStatement.setString(1, entity.getLogin());
         super.preparedStatement.setString(2, entity.getFirstName());
         super.preparedStatement.setString(3, entity.getLastName());
@@ -28,7 +28,7 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     @Override
-    void addPrimaryKeyToStatement(int queryKeyIndex, User entity) throws SQLException {
+    void addPrimaryKeyToStatement(int queryKeyIndex, UserData entity) throws SQLException {
         super.preparedStatement.setString(queryKeyIndex, entity.getLogin());
     }
 }

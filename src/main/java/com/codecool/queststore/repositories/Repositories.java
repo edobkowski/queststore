@@ -1,14 +1,17 @@
 package com.codecool.queststore.repositories;
 
 public enum Repositories {
-    USER,
+    USER_DATA,
     ROLE,
     PRIVILEGE,
+    ADMIN,
     MENTOR,
     STUDENT,
     CODECOOL_CLASS,
     QUEST,
     ARTIFACT,
     WALLET,
-    LEVEL;
+    LEVEL,
+    CLASS_MENTORS,
+    WALLET_ARTIFACTS;
 }

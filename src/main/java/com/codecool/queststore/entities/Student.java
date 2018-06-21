@@ -1,38 +1,38 @@
 package com.codecool.queststore.entities;
 
 public class Student {
-    private String login;
+    private UserData userData;
     private int experience;
     private Wallet wallet;
     private CodecoolClass codecoolClass;
 
-    public Student(String login, Wallet wallet) {
-        this.login = login;
+    public Student(UserData userData, Wallet wallet) {
+        this.userData = userData;
         this.experience = 0;
         this.wallet = wallet;
     }
 
-    public Student(String login, int experience, Wallet wallet) {
-       this(login, wallet);
+    public Student(UserData userData, int experience, Wallet wallet) {
+       this(userData, wallet);
        this.experience = experience;
     }
 
-    public Student(String login, Wallet wallet, CodecoolClass codecoolClass) {
-        this(login, wallet);
+    public Student(UserData userData, Wallet wallet, CodecoolClass codecoolClass) {
+        this(userData, wallet);
         this.codecoolClass = codecoolClass;
     }
 
-    public Student(String login, int experience, Wallet wallet, CodecoolClass codecoolClass) {
-        this(login, experience, wallet);
+    public Student(UserData userData, int experience, Wallet wallet, CodecoolClass codecoolClass) {
+        this(userData, experience, wallet);
         this.codecoolClass = codecoolClass;
     }
 
-    public String getLogin() {
-        return this.login;
+    public UserData getUserData() {
+        return this.userData;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserData(UserData userData) {
+        this.userData = userData;
     }
 
     public int getExperience() {

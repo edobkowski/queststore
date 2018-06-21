@@ -7,12 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CodecoolClassByName implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM classes WHERE name=?";
-    private final String name;
+public class QuestById implements SqlCriteria {
+    private final String QUERY = "SELECT * FROM quests WHERE id=?";
+    private final int id;
 
-    public CodecoolClassByName(String name) {
-        this.name = name;
+    public QuestById(int id) {
+        this.id = id;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class CodecoolClassByName implements SqlCriteria {
             Connection connection = ConnectionProvider.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
 
-            preparedStatement.setString(1, this.name);
+            preparedStatement.setInt(1, this.id);
 
             return preparedStatement;
         } catch (SQLException e) {

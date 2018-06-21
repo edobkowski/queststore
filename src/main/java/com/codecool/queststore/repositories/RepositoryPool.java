@@ -30,12 +30,14 @@ public class RepositoryPool {
     private static class RepositoryFactory {
         public static Repository makeRepository(Repositories repositoryType) throws PersistenceLayerException {
             switch (repositoryType) {
-                case USER:
-                    return new UserRepository();
+                case USER_DATA:
+                    return new UserDataRepository();
                 case ROLE:
                     return new RoleRepository();
                 case PRIVILEGE:
                     return new PrivilegeRepository();
+                case ADMIN:
+                    return new AdminRepository();
                 case MENTOR:
                     return new MentorRepository();
                 case STUDENT:
@@ -50,8 +52,12 @@ public class RepositoryPool {
                     return new LevelRepository();
                 case CODECOOL_CLASS:
                     return new CodecoolClassRepository();
+                case CLASS_MENTORS:
+                    return new ClassMentorsRepository();
+                case WALLET_ARTIFACTS:
+                    return new WalletArtifactsRepository();
                 default:
-                    throw new PersistenceLayerException("There's no such a repository");
+                    throw new PersistenceLayerException("There's no such a repository: " + repositoryType.toString());
             }
         }
     }

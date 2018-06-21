@@ -1,6 +1,6 @@
 package com.codecool.queststore.entities;
 
-public class User {
+public class UserData {
     private String login;
     private String firstName;
     private String lastName;
@@ -8,7 +8,11 @@ public class User {
     private Role role;
     private int hashedPassword;
 
-    public User(String login, String firstName, String lastName, String email, Role role, String password) {
+    public UserData(String login) {
+        this.login = login;
+    }
+
+    public UserData(String login, String firstName, String lastName, String email, Role role, String password) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,7 +21,7 @@ public class User {
         this.hashedPassword = password.hashCode();
     }
 
-    public User(String login, String firstName, String lastName, String email, Role role, int hashedPassword) {
+    public UserData(String login, String firstName, String lastName, String email, Role role, int hashedPassword) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;

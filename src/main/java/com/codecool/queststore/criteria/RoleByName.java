@@ -7,11 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CodecoolClassByName implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM classes WHERE name=?";
+public class RoleByName implements SqlCriteria {
+    private final String QUERY = "SELECT * FROM roles WHERE name=?";
     private final String name;
 
-    public CodecoolClassByName(String name) {
+    public RoleByName(String name) {
         this.name = name;
     }
 
