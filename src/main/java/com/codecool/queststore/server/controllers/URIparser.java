@@ -9,6 +9,12 @@ public class URIparser {
         return splitted.length > 1;
     }
 
+    public static boolean hasQueryString(URI uri) {
+        String[] splitted = splitURI(uri);
+
+        return splitted.length > 2;
+    }
+
     public static String parseIdentifier(URI uri) {
         return splitURI(uri)[1];
     }
@@ -17,7 +23,11 @@ public class URIparser {
         return Integer.parseInt(parseIdentifier(uri));
     }
 
+    public static String getQueryString(URI uri) {
+        return splitURI(uri)[2];
+    }
+
     private static String[] splitURI(URI uri) {
-        return uri.toString().substring(1).split("/");
+        return uri.toString().substring(1).split("/|\\?");
     }
 }
