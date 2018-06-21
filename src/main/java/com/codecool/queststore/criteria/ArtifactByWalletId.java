@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ArtifactByWalletId implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM artifacts WHERE artifact_id IN" +
+    private final String QUERY = "SELECT * FROM artifacts WHERE id IN" +
                                  "(SELECT artifact_id FROM wallet_artifacts WHERE wallet_id=?)";
     private final int id;
 
