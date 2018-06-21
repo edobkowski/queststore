@@ -132,3 +132,17 @@ function deleteLevel(deleteButton) {
 
   return false;
 }
+
+function buyArtifact(buyButton) {
+  var artifactId = buyButton.dataset.id;
+
+  var url = 'http://127.0.0.1:8080/store/' + artifactId;
+
+  fetch(url, {
+    method: 'POST',
+  });
+
+  $('#common-modal').modal('hide');
+
+  return false;
+}
