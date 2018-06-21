@@ -1,7 +1,7 @@
 var levelsSectionHeader = "<hr>" +
             "<h3>List of levels</h3>";
             
-var levelsTableStructure = "<table class=\"table w-50\">" + 
+var levelsTableStructure = "<table class=\"table w-75\">" + 
             ' <thead class="thead-dark">' + 
             '   <tr>' +
             '     <th scope="col"></th>' +
@@ -44,7 +44,7 @@ function addLevelsRows(levelsJson, levelsDiv) {
       '  <td class="center-column">' + level.threshold + '</td>' +
       '  <td class="center-column">' +
       '    <i class="fas fa-pencil-alt" id="open-edit-level-modal" data-id=' + level.id + ' onclick="openModal(this.id, this)"></i>' +
-      '    <i class="fas fa-trash-alt" id="open-remove-level-modal" data-id=' + level.id + 'onclick="openModal(this.id, this)"></i>' +
+      '    <i class="fas fa-trash-alt" id="open-remove-level-modal" data-id=' + level.id + ' onclick="openModal(this.id, this)"></i>' +
       '  </td>' +
       '</tr>';
 

@@ -58,7 +58,7 @@ async function openModal(buttonId, button) {
       element.innerHTML = await addFilledEditLevelModal(entityId);
       break;
     case "open-remove-level-modal":
-      modalFilePath = "assets/modals/remove_level_modal.html";
+      element.innerHTML = await addRemoveLevelModal(entityId);
       break;
   }
   
@@ -69,6 +69,7 @@ async function openModal(buttonId, button) {
 
 async function addFilledEditLevelModal(id) {
   var levelData = await getJsonFromPath("http://127.0.0.1:8080/levels/" + id);
+  var levelData = levelData.levels[0];
 
   var filledModal = 
   '<div class="modal-header">' +
@@ -78,25 +79,47 @@ async function addFilledEditLevelModal(id) {
   '  </button>' +
   '</div>' +
   '<div class="modal-body">' +
-  '  <form action="http://127.0.0.1:8080/levels/' + levelData.levels[0].id + '" action="PUT">' +
+  '   <form id="editLevelForm" data-id="' + levelData.id + '" onsubmit="return handleEditLevelForm(this)">' +
   '    <div class="form-group">' +
   '      <label for="codecool-class-name">Level name</label>' +
   '      <input type="text" class="form-control" id="codecool-class-name" name="name" value="' 
-            + levelData.levels[0].name + '" placeholder="Enter level name">' +
+            + levelData.name + '" placeholder="Enter level name">' +
   '      <small class="form-text text-muted">Required field</small>' +
   '    </div>' +
   '    <div class="form-group">' +
   '      <label for="codecool-class-name">Experience threshold</label>' +
-  '      <input type="number" class="form-control" id="codecool-class-name" name="threshold" value="' 
-            + levelData.levels[0].threshold + '" placeholder="Enter experience threshold">' +
+  '      <input type="number" class="form-control" id="codecool-class-threshold" name="threshold" value="' 
+            + levelData.threshold + '" placeholder="Enter experience threshold">' +
   '      <small class="form-text text-muted">Required field</small>' +
   '    </div>' +
   '      <div class="modal-footer">' +
   '        <button type="submit" class="btn btn-success">Save changes</button>' +
   '        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>' +
-  '      </div>'; 
+  '      </div>' +
   '  </form>' +
   '</div>';
+
+  return filledModal;
+}
+
+async function addRemoveLevelModal(id) {
+  var levelData = await getJsonFromPath("http://127.0.0.1:8080/levels/" + id);
+  var levelData = levelData.levels[0];
+
+  var filledModal =
+  '<div class="modal-header">' +
+  '  <h5 class="modal-title">Remove level</h5>' +
+  '  <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+  '    <span aria-hidden="true">&times;</span>' +
+  '  </button>' +
+  '</div>' +
+  '<div class="modal-body">' +
+  '  <p>Are you sure you want to delete ' + levelData.name + '</p>' +
+  '</div>' +
+  '<div class="modal-footer">' +
+  '  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+  '  <button type="submit" class="btn btn-danger" data-id="' + levelData.id + '" onclick="deleteLevel(this); javascript:window.location.reload()">Delete</button>' +
+  '</div>'; 
 
   return filledModal;
 }
