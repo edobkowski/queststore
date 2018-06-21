@@ -28,7 +28,7 @@ function addCards(artifactsJson, cardDiv) {
                        '	    <p class="card-text">' + artifact.description + '</p>' +
                        '    </div>' +
                        '    <div class="card-footer text-right">' +
-                       '        Buy for:<a href="#" class="btn btn-warning"><i class="fab fa-creative-commons"></i>' + artifact.price + '</a>' +
+                       '        Buy for: <a href="#" class="btn btn-warning id="open-buy-artifact-modal" data-id=' + artifact.id + ' onclick="openModal(this.id, this)""><i class="fab fa-creative-commons"></i>' + artifact.price + '</a>' +
                        '    </div>' +
                        '  </div>' +
                        '</div>';
