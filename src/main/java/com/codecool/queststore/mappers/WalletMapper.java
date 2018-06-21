@@ -37,6 +37,7 @@ public class WalletMapper implements Mapper {
         ArtifactMapper artifactMapper = new ArtifactMapper();
 
         String artifactsJson = artifactMapper.mapToJson(artifacts);
+        artifactsJson = artifactsJson.substring(1, artifactsJson.length()-1);
 
         return String.format("{\"id\": %d, \"ownerLogin\": \"%s\", \"balance\": %d, \"%s\"}",
                 wallet.getId(),
