@@ -42,7 +42,7 @@ function addMentorRows(mentorsJson, mentorsDiv) {
     const mentor = mentorsJson.mentors[i];
 
     const filledRow = '<tr>' +
-      '  <th scope="row">' + (i+1) + '</th>' +
+      '  <th scope="row" data-login=' + mentor.login + '>' + (i+1) + '</th>' +
       '  <td>' + mentor.firstName + '</td>' +
       '  <td>' + mentor.lastName + '</td>' +
       '  <td>' + mentor.email + '</td>' +
@@ -58,4 +58,4 @@ function addMentorRows(mentorsJson, mentorsDiv) {
   }
 }
 
-createTableFromJson("assets/fake_data/mentors.json");
+// createTableFromJson("http://127.0.0.1:8080/mentors");

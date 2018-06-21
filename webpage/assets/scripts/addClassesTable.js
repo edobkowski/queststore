@@ -49,4 +49,4 @@ function addClassRows(classesJson, classesDiv) {
   }
 }
 
-createTableFromJson("assets/fake_data/classes.json");
+createTableFromJson("http://127.0.0.1:8080/classes");

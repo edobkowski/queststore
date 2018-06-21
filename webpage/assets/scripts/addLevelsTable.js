@@ -43,8 +43,8 @@ function addLevelsRows(levelsJson, levelsDiv) {
       '  <td>' + level.name + '</td>' +
       '  <td class="center-column">' + level.threshold + '</td>' +
       '  <td class="center-column">' +
-      '    <i class="fas fa-pencil-alt" id="open-edit-level-modal" onclick="openModal(this.id)"></i>' +
-      '    <i class="fas fa-trash-alt" id="open-remove-level-modal" onclick="openModal(this.id)"></i>' +
+      '    <i class="fas fa-pencil-alt" id="open-edit-level-modal" data-id=' + level.id + ' onclick="openModal(this.id, this)"></i>' +
+      '    <i class="fas fa-trash-alt" id="open-remove-level-modal" data-id=' + level.id + 'onclick="openModal(this.id, this)"></i>' +
       '  </td>' +
       '</tr>';
 
@@ -52,4 +52,4 @@ function addLevelsRows(levelsJson, levelsDiv) {
   }
 }
 
-createTableFromJson("assets/fake_data/levels.json");
+createTableFromJson("http://127.0.0.1:8080/levels");
