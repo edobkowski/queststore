@@ -21,6 +21,7 @@ public class WalletMapper implements Mapper {
     public Wallet map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
 
         int id = resultSet.getInt("id");
+        String ownerLogin = resultSet.getString("owner_login");
         int balance = resultSet.getInt("balance");
 
         Repository<Artifact> artifactRepository = REPOSITORY_POOL.getRepository(Repositories.ARTIFACT);
@@ -28,7 +29,7 @@ public class WalletMapper implements Mapper {
 
         List<Artifact> artifacts = artifactRepository.query(getArtifactsByWalletId);
 
-        return new Wallet(id, balance, artifacts);
+        return new Wallet(id, ownerLogin, balance, artifacts);
     }
 
     public String mapToJson(Wallet wallet) {
