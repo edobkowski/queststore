@@ -1,5 +1,6 @@
 package com.codecool.queststore.mappers;
 
+import com.codecool.queststore.criteria.WalletByOwnerLogin;
 import com.codecool.queststore.entities.UserData;
 import com.codecool.queststore.repositories.Repository;
 import com.codecool.queststore.repositories.Repositories;
@@ -16,6 +17,7 @@ import com.codecool.queststore.criteria.CodecoolClassById;
 import com.codecool.queststore.repositories.PersistenceLayerException;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,42 +30,42 @@ public class StudentMapper implements Mapper {
         int experience = resultSet.getInt("exp");
 
         Repository<Wallet> walletRepository = REPOSITORY_POOL.getRepository(Repositories.WALLET);
-        SqlCriteria getWalletById = new WalletById(resultSet.getInt("wallet_id"));
-        Wallet wallet = walletRepository.query(getWalletById).get(0);
+        SqlCriteria getWalletByOwnerLogin = new WalletByOwnerLogin(resultSet.getString("login"));
+        Wallet wallet = walletRepository.query(getWalletByOwnerLogin).get(0);
 
-        Repository<CodecoolClass> classRepository = REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
-        SqlCriteria getClassById = new CodecoolClassById(resultSet.getInt("class_id"));
-        CodecoolClass codecoolClass = classRepository.query(getClassById).get(0);
-
-        return new Student(new UserData(login), experience, wallet, codecoolClass);
+        return new Student(new UserData(login), experience, wallet);
     }
 
     public String mapToJson(Student student) {
 
         CodecoolClass codecoolClass = student.getCodecoolClass();
         Wallet wallet = student.getWallet();
+
         WalletMapper walletMapper = new WalletMapper();
         CodecoolClassMapper codecoolClassMapper = new CodecoolClassMapper();
 
         String codecoolClassJson = codecoolClassMapper.mapToJson(codecoolClass);
         String walletJson = walletMapper.mapToJson(wallet);
 
-        return String.format("{\"login\": \"%s\", \"fistname\": \"%s\", \"lastname\": \"%s\", \"email\": \"%s\", \"class\": \"%s\"}",
+        System.out.println(walletJson);
+        System.out.println(codecoolClassJson);
+
+        return String.format("{\"login\": \"%s\", \"fistname\": \"%s\", \"lastname\": \"%s\", \"email\": \"%s\", \"class\": \"%s\", \"wallet\": %s}",
                 student.getUserData().getLogin(),
                 student.getUserData().getFirstName(),
                 student.getUserData().getLastName(),
                 student.getUserData().getEmail(),
-                walletJson,
-                codecoolClassJson);
+                codecoolClassJson,
+                walletJson);
     }
 
     public String mapToJson(List<Student> students) {
         StringBuilder json = new StringBuilder();
 
         json.append("{\"students\": [");
-
         int indexOfLastElement = students.size() - 1;
         for (Student student: students) {
+
             json.append(mapToJson(student));
 
             if (students.indexOf(student) != indexOfLastElement) {
@@ -72,7 +74,6 @@ public class StudentMapper implements Mapper {
         }
 
         json.append("]}");
-
         return json.toString();
     }
 }

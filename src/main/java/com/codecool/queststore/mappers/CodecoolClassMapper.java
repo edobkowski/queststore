@@ -17,9 +17,14 @@ public class CodecoolClassMapper implements Mapper<CodecoolClass> {
     }
 
     public String mapToJson(CodecoolClass codecoolClass) {
-        return String.format("{\"id\": %d, \"name\": \"%s\"}",
-                codecoolClass.getId(),
-                codecoolClass.getName());
+        if(codecoolClass != null) {
+            return String.format("{\"id\": %d, \"name\": \"%s\"}",
+                    codecoolClass.getId(),
+                    codecoolClass.getName());
+        } else {
+            return null;
+
+        }
     }
 
     public String mapToJson(List<CodecoolClass> codecoolClasses) {

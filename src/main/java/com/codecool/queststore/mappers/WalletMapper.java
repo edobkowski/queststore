@@ -40,7 +40,7 @@ public class WalletMapper implements Mapper {
         String artifactsJson = artifactMapper.mapToJson(artifacts);
         artifactsJson = artifactsJson.substring(1, artifactsJson.length()-1);
 
-        return String.format("{\"id\": %d, \"ownerLogin\": \"%s\", \"balance\": %d, \"%s\"}",
+        return String.format("{\"id\": %d, \"ownerLogin\": \"%s\", \"balance\": %d, %s}",
                 wallet.getId(),
                 wallet.getOwnerLogin(),
                 wallet.getBalance(),
