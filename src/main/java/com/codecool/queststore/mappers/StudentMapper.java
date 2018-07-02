@@ -1,6 +1,6 @@
 package com.codecool.queststore.mappers;
 
-import com.codecool.queststore.criteria.WalletByOwnerLogin;
+import com.codecool.queststore.criteria.*;
 import com.codecool.queststore.entities.UserData;
 import com.codecool.queststore.repositories.Repository;
 import com.codecool.queststore.repositories.Repositories;
@@ -9,10 +9,6 @@ import com.codecool.queststore.repositories.RepositoryPool;
 import com.codecool.queststore.entities.Student;
 import com.codecool.queststore.entities.CodecoolClass;
 import com.codecool.queststore.entities.Wallet;
-
-import com.codecool.queststore.criteria.SqlCriteria;
-import com.codecool.queststore.criteria.WalletById;
-import com.codecool.queststore.criteria.CodecoolClassById;
 
 import com.codecool.queststore.repositories.PersistenceLayerException;
 
@@ -29,11 +25,15 @@ public class StudentMapper implements Mapper {
         String login = resultSet.getString("login");
         int experience = resultSet.getInt("exp");
 
+        Repository<UserData> userDataRepository = REPOSITORY_POOL.getRepository(Repositories.USER_DATA);
+        SqlCriteria getUserDataByLogin = new UserDataByLogin(login);
+        UserData userData = userDataRepository.query(getUserDataByLogin).get(0);
+
         Repository<Wallet> walletRepository = REPOSITORY_POOL.getRepository(Repositories.WALLET);
         SqlCriteria getWalletByOwnerLogin = new WalletByOwnerLogin(resultSet.getString("login"));
         Wallet wallet = walletRepository.query(getWalletByOwnerLogin).get(0);
 
-        return new Student(new UserData(login), experience, wallet);
+        return new Student(userData, experience, wallet);
     }
 
     public String mapToJson(Student student) {
@@ -46,9 +46,6 @@ public class StudentMapper implements Mapper {
 
         String codecoolClassJson = codecoolClassMapper.mapToJson(codecoolClass);
         String walletJson = walletMapper.mapToJson(wallet);
-
-        System.out.println(walletJson);
-        System.out.println(codecoolClassJson);
 
         return String.format("{\"login\": \"%s\", \"fistname\": \"%s\", \"lastname\": \"%s\", \"email\": \"%s\", \"class\": \"%s\", \"wallet\": %s}",
                 student.getUserData().getLogin(),
