@@ -1,12 +1,18 @@
 package com.codecool.queststore.services;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LevelManagerTest {
 
     @Test
+    @DisplayName("Test 'get' method with invalid input")
     void testGetWithInvalidIndex() throws ServiceLayerException {
         int expectedSize = 0;
         int actualSize = new LevelManager().get(-1).size();
@@ -14,12 +20,18 @@ class LevelManagerTest {
     }
 
     @Test
-    void testEditWithInvalidIndex() {
-        assertThrows(ServiceLayerException.class, () -> new LevelManager().edit(-1, "custom", 1));
+    @DisplayName("Test 'edit' method with invalid input")
+    void testEditWithInvalidIndex() throws ServiceLayerException {
+        LevelManager managerSpy = spy(new LevelManager());
+        when(managerSpy.get(-1)).thenReturn(new ArrayList<>());
+        assertThrows(ServiceLayerException.class, () -> managerSpy.edit(-1, "custom", 1));
     }
 
     @Test
-    void testRemoveWithInvalidIndex() {
-        assertThrows(ServiceLayerException.class, () -> new LevelManager().remove(-1));
+    @DisplayName("Test 'remove' method with invalid input")
+    void testRemoveWithInvalidIndex() throws ServiceLayerException {
+        LevelManager managerSpy = spy(new LevelManager());
+        when(managerSpy.get(-1)).thenReturn(new ArrayList<>());
+        assertThrows(ServiceLayerException.class, () -> managerSpy.remove(-1));
     }
 }
