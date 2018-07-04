@@ -43,4 +43,21 @@ class MentorMapperMapToJsonTest {
         });
     }
 
+    @Test
+    @DisplayName("Check data after using mapToJson method with list of mentors")
+    public void testMapToJsonSendListMentors() {
+        UserData mentorUserData2 = new UserData("mentorTest2");
+        Mentor mentorTest2 = new Mentor(mentorUserData2);
+        List<Mentor> list = new ArrayList<>();
+        list.add(mentorTest);
+        list.add(mentorTest2);
+
+        String expected = "{\"mentors\": [{\"login\": \"mentorTest\", \"first_name\": \"null\", \"last_name\": " +
+                "\"null\", \"email\": \"null\", \"classes\": []},"+"{\"login\": \"mentorTest2\", \"first_name\": " +
+                "\"null\", \"last_name\": \"null\", \"email\": \"null\", \"classes\": []}]}";
+
+        String methodResult = mentorMapper.mapToJson(list);
+        assertEquals(expected, methodResult);
+    }
+
 }
