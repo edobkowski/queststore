@@ -54,4 +54,26 @@ class StudentMapperMapToJsonTest {
         });
     }
 
+    @Test
+    @DisplayName("Check data after using mapToJson method with list of students")
+    public void testMapToJsonSendListMentors() {
+        UserData studentUserData2 = new UserData("studentTest2");
+        Student studentTest2 = new Student(studentUserData2, wallet);
+        List<Student> studentsList = new ArrayList<>();
+        studentsList.add(studentTest);
+        studentsList.add(studentTest2);
+
+        String expected = "{\"students\": [{\"login\": \"studentTest\", \"fistname\": \"null\", \"lastname\": " +
+                "\"null\", \"email\": \"null\", \"class\": \"null\", \"wallet\": {\"id\": 1, " +
+                "\"ownerLogin\": \"studentTest\", \"balance\": 1, \"artifacts\": [{\"id\": -1, " +
+                "\"name\": \"artifact\", \"description\": \"artifact\", \"price\": 1}]}}," +
+                "{\"login\": \"studentTest2\", \"fistname\": \"null\", \"lastname\": " +
+                "\"null\", \"email\": \"null\", \"class\": \"null\", \"wallet\": {\"id\": 1, " +
+                "\"ownerLogin\": \"studentTest\", \"balance\": 1, \"artifacts\": [{\"id\": -1, " +
+                "\"name\": \"artifact\", \"description\": \"artifact\", \"price\": 1}]}}]}";
+
+        String methodResult = studentMapper.mapToJson(studentsList);
+        assertEquals(expected, methodResult);
+    }
+
 }
