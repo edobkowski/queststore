@@ -32,4 +32,21 @@ class MentorMapperMapTest {
             mentorMapper.map(null);
         });
     }
+
+    @Test
+    @DisplayName("Test map method in MentorMapper - base usecase")
+    public void testMap() throws SQLException, PersistenceLayerException {
+        ResultSet resultSetMock = mock(ResultSet.class);
+        when(resultSetMock.getString("login")).thenReturn("mentorTest");
+
+        MentorMapper mentorMapper = spy(new MentorMapper());
+
+        doReturn(new UserData("mentorTest"))
+                .when(mentorMapper).getMentorData("mentorTest");
+        doReturn(new ArrayList<Artifact>())
+                .when(mentorMapper).getMentorClasses("mentorTest");
+        Mentor mentor = mentorMapper.map(resultSetMock);
+
+        assertEquals("mentorTest", mentor.getUserData().getLogin());
+    }
 }
