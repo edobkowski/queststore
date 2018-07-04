@@ -26,9 +26,7 @@ public class StudentMapper implements Mapper {
         int experience = resultSet.getInt("exp");
 
         UserData userData = getStudentData(login);
-        Repository<Wallet> walletRepository = REPOSITORY_POOL.getRepository(Repositories.WALLET);
-        SqlCriteria getWalletByOwnerLogin = new WalletByOwnerLogin(resultSet.getString("login"));
-        Wallet wallet = walletRepository.query(getWalletByOwnerLogin).get(0);
+        Wallet wallet = getStudentWallet(resultSet);
 
         return new Student(userData, experience, wallet);
     }
@@ -76,5 +74,12 @@ public class StudentMapper implements Mapper {
         SqlCriteria getUserDataByLogin = new UserDataByLogin(login);
         UserData userData = userDataRepository.query(getUserDataByLogin).get(0);
         return userData;
+    }
+
+    public Wallet getStudentWallet(ResultSet resultSet) throws SQLException, PersistenceLayerException {
+        Repository<Wallet> walletRepository = REPOSITORY_POOL.getRepository(Repositories.WALLET);
+        SqlCriteria getWalletByOwnerLogin = new WalletByOwnerLogin(resultSet.getString("login"));
+        Wallet wallet = walletRepository.query(getWalletByOwnerLogin).get(0);
+        return wallet;
     }
 }
