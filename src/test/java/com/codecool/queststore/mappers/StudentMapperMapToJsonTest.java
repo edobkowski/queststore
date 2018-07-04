@@ -45,4 +45,13 @@ class StudentMapperMapToJsonTest {
         assertEquals(expected, methodResult);
     }
 
+    @Test
+    @DisplayName("Send null to mapToJson method in StudentMapper class")
+    public void testMapToJsonSendNull() {
+        Student nullStudent = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+            studentMapper.mapToJson(nullStudent);
+        });
+    }
+
 }
