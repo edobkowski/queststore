@@ -31,4 +31,21 @@ class StudentMapperMapTest {
             studentMapper.map(null);
         });
     }
+
+    @Test
+    @DisplayName("Test map method in StudentMapper - base usecase")
+    public void testMapBaseUsecase() throws SQLException, PersistenceLayerException {
+        ResultSet resultSetMock = mock(ResultSet.class);
+        when(resultSetMock.getString("login")).thenReturn("studentTest");
+        when(resultSetMock.getInt("exp")).thenReturn(0);
+        StudentMapper studentMapper = spy(new StudentMapper());
+
+        doReturn(new UserData("studentTest"))
+                .when(studentMapper).getStudentData("studentTest");
+        doReturn(new Wallet("studentTest"))
+                .when(studentMapper).getStudentWallet(resultSetMock);
+        Student student = studentMapper.map(resultSetMock);
+
+        assertEquals("studentTest", student.getUserData().getLogin());
+    }
 }
