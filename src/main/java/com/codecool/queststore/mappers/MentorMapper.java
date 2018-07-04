@@ -26,9 +26,7 @@ public class MentorMapper implements Mapper<Mentor> {
         String login = resultSet.getString("login");
 
         UserData userData = getMentorData(login);
-        Repository<CodecoolClass> classRepository = REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
-        SqlCriteria getClassesByMentor = new CodecoolClassByMentorLogin(login);
-        List<CodecoolClass> classes = classRepository.query(getClassesByMentor);
+        List<CodecoolClass> classes = getMentorClasses(login);
 
         return new Mentor(userData, classes);
     }
@@ -74,5 +72,12 @@ public class MentorMapper implements Mapper<Mentor> {
         SqlCriteria getUserDataByLogin = new UserDataByLogin(login);
         UserData userData = userDataRepository.query(getUserDataByLogin).get(0);
         return userData;
+    }
+
+    public List<CodecoolClass> getMentorClasses(String login) throws PersistenceLayerException {
+        Repository<CodecoolClass> classRepository = REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
+        SqlCriteria getClassesByMentor = new CodecoolClassByMentorLogin(login);
+        List<CodecoolClass> classes = classRepository.query(getClassesByMentor);
+        return classes;
     }
 }
