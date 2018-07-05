@@ -67,14 +67,14 @@ public class MentorMapper implements Mapper<Mentor> {
         return json.toString();
     }
 
-    public UserData getMentorData(String login) throws PersistenceLayerException {
+    UserData getMentorData(String login) throws PersistenceLayerException {
         Repository<UserData> userDataRepository = REPOSITORY_POOL.getRepository(Repositories.USER_DATA);
         SqlCriteria getUserDataByLogin = new UserDataByLogin(login);
         UserData userData = userDataRepository.query(getUserDataByLogin).get(0);
         return userData;
     }
 
-    public List<CodecoolClass> getMentorClasses(String login) throws PersistenceLayerException {
+    List<CodecoolClass> getMentorClasses(String login) throws PersistenceLayerException {
         Repository<CodecoolClass> classRepository = REPOSITORY_POOL.getRepository(Repositories.CODECOOL_CLASS);
         SqlCriteria getClassesByMentor = new CodecoolClassByMentorLogin(login);
         List<CodecoolClass> classes = classRepository.query(getClassesByMentor);
