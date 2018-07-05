@@ -69,14 +69,14 @@ public class StudentMapper implements Mapper {
         return json.toString();
     }
 
-    public UserData getStudentData(String login) throws PersistenceLayerException {
+    UserData getStudentData(String login) throws PersistenceLayerException {
         Repository<UserData> userDataRepository = REPOSITORY_POOL.getRepository(Repositories.USER_DATA);
         SqlCriteria getUserDataByLogin = new UserDataByLogin(login);
         UserData userData = userDataRepository.query(getUserDataByLogin).get(0);
         return userData;
     }
 
-    public Wallet getStudentWallet(ResultSet resultSet) throws SQLException, PersistenceLayerException {
+    Wallet getStudentWallet(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         Repository<Wallet> walletRepository = REPOSITORY_POOL.getRepository(Repositories.WALLET);
         SqlCriteria getWalletByOwnerLogin = new WalletByOwnerLogin(resultSet.getString("login"));
         Wallet wallet = walletRepository.query(getWalletByOwnerLogin).get(0);
