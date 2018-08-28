@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CodecoolClassMapper implements Mapper {
+public class CodecoolClassMapper implements Mapper<CodecoolClass> {
     @Override
     public CodecoolClass map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
         int id = resultSet.getInt("id");
@@ -17,9 +17,14 @@ public class CodecoolClassMapper implements Mapper {
     }
 
     public String mapToJson(CodecoolClass codecoolClass) {
-        return String.format("{\"id\": %d, \"name\": \"%s\"}",
-                codecoolClass.getId(),
-                codecoolClass.getName());
+        if(codecoolClass != null) {
+            return String.format("{\"id\": %d, \"name\": \"%s\"}",
+                    codecoolClass.getId(),
+                    codecoolClass.getName());
+        } else {
+            return null;
+
+        }
     }
 
     public String mapToJson(List<CodecoolClass> codecoolClasses) {

@@ -21,6 +21,7 @@ public class WalletMapper implements Mapper {
     public Wallet map(ResultSet resultSet) throws SQLException, PersistenceLayerException {
 
         int id = resultSet.getInt("id");
+        String ownerLogin = resultSet.getString("owner_login");
         int balance = resultSet.getInt("balance");
 
         Repository<Artifact> artifactRepository = REPOSITORY_POOL.getRepository(Repositories.ARTIFACT);
@@ -28,6 +29,40 @@ public class WalletMapper implements Mapper {
 
         List<Artifact> artifacts = artifactRepository.query(getArtifactsByWalletId);
 
-        return new Wallet(id, balance, artifacts);
+        return new Wallet(id, ownerLogin, balance, artifacts);
+    }
+
+    public String mapToJson(Wallet wallet) {
+
+        List<Artifact> artifacts = wallet.getArtifactList();
+        ArtifactMapper artifactMapper = new ArtifactMapper();
+
+        String artifactsJson = artifactMapper.mapToJson(artifacts);
+        artifactsJson = artifactsJson.substring(1, artifactsJson.length()-1);
+
+        return String.format("{\"id\": %d, \"ownerLogin\": \"%s\", \"balance\": %d, %s}",
+                wallet.getId(),
+                wallet.getOwnerLogin(),
+                wallet.getBalance(),
+                artifactsJson);
+    }
+
+    public String mapToJson(List<Wallet> wallets) {
+        StringBuilder json = new StringBuilder();
+
+        json.append("{\"wallets\": [");
+
+        int indexOfLastElement = wallets.size() - 1;
+        for (Wallet wallet: wallets) {
+            json.append(mapToJson(wallet));
+
+            if (wallets.indexOf(wallet) != indexOfLastElement) {
+                json.append(",");
+            }
+        }
+
+        json.append("]}");
+
+        return json.toString();
     }
 }

@@ -7,11 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CodecoolClassByMentorLogin implements SqlCriteria {
-    private final String QUERY = "SELECT * FROM classes WHERE id IN (SELECT class_id FROM class_mentors WHERE mentor_login=?)";
+public class UserDataByLogin implements SqlCriteria {
+    private final String QUERY = "SELECT * FROM users WHERE login=?";
     private final String login;
 
-    public CodecoolClassByMentorLogin(String login) {
+    public UserDataByLogin(String login) {
         this.login = login;
     }
 
